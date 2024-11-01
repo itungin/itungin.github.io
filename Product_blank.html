@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Akuntansi</title>
+    <link rel="stylesheet" href="/Dummy/static/css/product_blank.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <header>
+        <nav>
+            <ul class="nav-menu">
+                <li><a href="LP.html" >Dashboard</a></li>
+                <li><a href="Business_blank.html" >Business</a></li>
+                <li><a href="Accounting_blank.html" >Accounting</a></li>
+                <li style="background-color: #97ced1;"><a href="Product_blank.html" style="color: rgb(255, 255, 255);">Product</a></li>
+                <li><a href="Contacts_blank.html" >Contact Us</a></li>
+            </ul>
+        </nav>
+
+        <div class="user-profile">
+            <img src="/Dummy/static/img/Guest.png" alt="User Profile" class="user-image" id="user-avatar">
+            <div class="dropdown" id="profile-dropdown">
+                <button onclick="toggleDropdown()" class="dropbtn">▼</button>
+                <div class="dropdown-content" id="dropdown-content">
+                    <!-- <a href="#">Account Settings</a>
+                    <a href="#">Profile</a> -->
+                    <a href="login.html">Login</a>
+                </div>
+            </div>
+        </div>
+        </div>
+    </header>
+
+    <!-- Product Management Section -->
+    <div class="container">
+        <div class="product-header">
+            <h1>Product Management</h1>
+            <!-- Add Product Button -->
+            <!-- <button class="add-product-btn" id="addProductBtn">Add New Product</button>
+            <button class="export-csv-btn" id="exportCsvBtn">Export to CSV</button>
+        </div> -->
+        <!-- Search Bar -->
+        <div class="search-filter">
+            <input type="text" id="search-bar" placeholder="Search for products...">
+            <!-- Sorting Dropdown -->
+            <select id="sort-options">
+                <option value="name">Sort by Name</option>
+                <option value="price">Sort by Price</option>
+                <option value="category">Sort by Category</option>
+                <option value="stock">Sort by Stock</option>
+            </select>
+        </div>
+        <!-- Product Table -->
+<div id="product-table">
+    <div class="row header blue">
+        <div class="cell">Name Product</div>
+        <div class="cell">Price</div>
+        <div class="cell">Category</div>
+        <div class="cell">Description</div>
+        <div class="cell">Stock</div>
+    </div>
+</div>
+</body>
+</html>
