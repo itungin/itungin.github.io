@@ -65,6 +65,7 @@ header {
 
 .nav-menu li:hover {
     background-color: #d7f2f4;
+    transform: scale(1.05);
 }
 
 /* User Profile Dropdown */
@@ -96,6 +97,7 @@ button {
 
 button:hover {
     background-color: #5db3b6;
+    transform: scale(1.05);
 }
 
 
@@ -134,6 +136,7 @@ button:hover {
 
 .dropdown-content a:hover {
     background-color: #f1f1f1;
+    transform: scale(1.05);
 }
 
 .dropdown:hover .dropdown-content {
@@ -282,8 +285,10 @@ button:hover {
 
 .btn-edit:hover {
     color: #28a745; /* Green color on hover */
+    transform: scale(1.05);
 }
 
 .btn-delete:hover {
     color: #dc3545; /* Red color on hover */
+    transform: scale(1.05);
 }
