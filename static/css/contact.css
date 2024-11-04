@@ -45,6 +45,7 @@ header {
 
 .nav-menu li:hover {
   background-color: #d7f2f4;
+  transform: scale(1.05);
 }
 
 
@@ -77,6 +78,7 @@ button {
 
 button:hover {
     background-color: #5db3b6;
+    transform: scale(1.05);
 }
 
 
@@ -115,6 +117,7 @@ button:hover {
 
 .dropdown-content a:hover {
   background-color: #f1f1f1;
+  transform: scale(1.05);
 }
 
 .dropdown:hover .dropdown-content {
@@ -123,7 +126,7 @@ button:hover {
 
 body {
     background: linear-gradient(to right, #ffffff 0%, #ffffff 100%);
-    background-image: url('/Dummy/static/img/image.png'); /* Background image */
+    background-image: url('/static/img/image.png'); /* Background image */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -297,6 +300,7 @@ body {
 
 .app-form-button:hover {
     color: #b9134f;
+    transform: scale(1.05);
 }
 
 .credits {
