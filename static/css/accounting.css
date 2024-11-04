@@ -110,6 +110,7 @@ header {
 
 .nav-menu li:hover {
     background-color: #d7f2f4;
+    transform: scale(1.05);
 }
 
 
@@ -164,6 +165,7 @@ header {
 
 .dropdown-content a:hover {
     background-color: #f1f1f1;
+    transform: scale(1.05);
 }
 
 .dropdown:hover .dropdown-content {
@@ -249,6 +251,7 @@ button {
 
 button:hover {
     background-color: #5db3b6;
+    transform: scale(1.05);
 }
 
 /* text */
