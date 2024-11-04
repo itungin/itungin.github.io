@@ -48,6 +48,7 @@
     /* Pointer cursor on hover  */
     transition: background-color 0.3s ease, transform 0.2s ease;
     /* Smooth transition  */
+    transform: scale(1.05);
 }
 
 .table-switcher button:focus {
@@ -74,6 +75,7 @@
 
 .export-csv-btn:hover {
     background-color: #1c7376;
+    transform: scale(1.05);
     transform: scale(1.05);
 }
 
@@ -132,6 +134,7 @@ header {
 
 .nav-menu li:hover {
     background-color: #d7f2f4;
+    transform: scale(1.05);
 }
 
 
@@ -166,6 +169,7 @@ button {
 
 button:hover {
     background-color: #5db3b6;
+    transform: scale(1.05);
 }
 
 
@@ -205,6 +209,7 @@ button:hover {
 
 .dropdown-content a:hover {
     background-color: #f1f1f1;
+    transform: scale(1.05);
 }
 
 .dropdown:hover .dropdown-content {
@@ -312,6 +317,7 @@ table tr:nth-child(even) {
 
 table tr:hover {
     background-color: #b6e4e7;
+    /* transform: scale(1.05); */
 }
 
 table td {
