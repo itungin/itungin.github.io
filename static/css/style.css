@@ -360,8 +360,8 @@ a {
 }
 
 /* Responsive Design */
-@media (max-width: 1024px) {
-    /* Dashboard and cards */
+/* @media (max-width: 1024px) {
+
     .dashboard {
         grid-template-columns: 1fr;
     }
@@ -373,7 +373,7 @@ a {
     .stat-card {
         margin-bottom: 20px;
     }
-}
+} */
 
 .menu-toggle {
     display: none;
@@ -413,4 +413,20 @@ a {
     .nav-menu.show {
         display: flex;
     }
+
+    /* Untuk menutup dropdown dengan klik di luar */
+    .nav-menu-background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.4);
+        display: none;
+    }
+
+    .nav-menu-background.show {
+        display: block;
+    }
 }
+
