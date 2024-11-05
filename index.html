@@ -35,14 +35,6 @@
         }
 
         /* Header */
-        header {
-            background-color: #34a0a4;
-            padding: 10px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            color: white;
-        }
 
         /* Menu Navigasi */
         .nav-menu {
@@ -210,11 +202,60 @@
         }
 
         /* Responsivitas */
-        @media (max-width: 768px) {
-            .dashboard {
-                grid-template-columns: 1fr;
-            }
-        }
+        .menu-toggle {
+          display: none;
+          font-size: 20px;
+          background-color: transparent;
+          color: white;
+          border: none;
+          cursor: pointer;
+      }
+      
+      /* Responsif untuk perangkat mobile */
+      @media (max-width: 768px) {
+          /* Sembunyikan navigasi dan tampilkan tombol menu */
+          .nav-menu {
+              display: none; /* Sembunyikan menu pada perangkat mobile */
+              flex-direction: column;
+              width: 100%;
+              background-color: #34a0a4;
+              position: absolute;
+              top: 60px;
+              left: 0;
+              z-index: 1;
+              padding: 0;
+          }
+      
+          .nav-menu li {
+              margin: 0;
+              padding: 15px;
+              border-bottom: 1px solid #e5f4f6;
+          }
+      
+          .menu-toggle {
+              display: block; /* Tampilkan tombol menu pada perangkat mobile */
+          }
+      
+          /* Tampilkan menu dropdown saat kelas 'show' ditambahkan */
+          .nav-menu.show {
+              display: flex;
+          }
+      
+          /* Untuk menutup dropdown dengan klik di luar */
+          .nav-menu-background {
+              position: fixed;
+              top: 0;
+              left: 0;
+              width: 100vw;
+              height: 100vh;
+              background: rgba(0, 0, 0, 0.4);
+              display: none;
+          }
+      
+          .nav-menu-background.show {
+              display: block;
+          }
+      }
     </style>
   </head>
   <body>
@@ -226,9 +267,7 @@
       <!-- Navigasi (disembunyikan pada perangkat mobile) -->
       <nav>
         <ul class="nav-menu">
-          <li style="background-color: #97ced1">
-            <a href="index.html" style="color: rgb(255, 255, 255)">Dashboard</a>
-          </li>
+          <li style="background-color: #97ced1"><a href="index.html" style="color: rgb(255, 255, 255)">Dashboard</a></li>
           <li><a href="Business.html">Business</a></li>
           <li><a href="Accounting.html">Accounting</a></li>
           <li><a href="Product.html">Product</a></li>
@@ -369,6 +408,17 @@
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
+      function toggleMenu() {
+        const navMenu = document.querySelector('.nav-menu');
+        navMenu.classList.toggle('show');
+    }
+    
+    function toggleDropdown() {
+        const dropdownContent = document.getElementById('dropdown-content');
+        dropdownContent.classList.toggle('show');
+    }
+    </script>
+    <script>
       const ctx = document.getElementById("bankBalanceChart").getContext("2d");
       const bankBalanceChart = new Chart(ctx, {
         type: "line", // Menggunakan grafik line
@@ -451,15 +501,6 @@
 
       //invoice
 
-      function toggleMenu() {
-        const navMenu = document.querySelector('.nav-menu');
-        navMenu.classList.toggle('show');
-    }
-    
-    function toggleDropdown() {
-        const dropdownContent = document.getElementById('dropdown-content');
-        dropdownContent.classList.toggle('show');
-    }
     
 
       // Update loadInvoices to include delete button
