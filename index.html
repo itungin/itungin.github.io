@@ -273,8 +273,7 @@
     <!-- Navigation Bar -->
     <header>
       <!-- Tombol menu untuk perangkat mobile -->
-      <button class="menu-toggle" aria-expanded="false" onclick="toggleMenu()">☰ Menu</button>
-    
+      <button class="menu-toggle" aria-expanded="false" onclick="toggleMenu()">☰ Menu</button>   
       <!-- Navigasi (disembunyikan pada perangkat mobile) -->
       <nav>
         <ul class="nav-menu">
@@ -287,10 +286,9 @@
           <li><a href="Contacts.html">Contact Us</a></li>
         </ul>
       </nav>
-    
       <!-- Profil pengguna -->
       <div class="user-profile">
-        <img src="/Dummy/static/img/ImageAcc.png" alt="User Profile" class="user-image" id="user-avatar" />
+        <img src="static/img/ImageAcc.png" alt="User Profile" class="user-image" id="user-avatar" />
         <div class="dropdown" id="profile-dropdown">
           <button onclick="toggleDropdown()" class="dropbtn">▼</button>
           <div class="dropdown-content" id="dropdown-content">
@@ -300,8 +298,6 @@
         </div>
       </div>
     </header>
-    
-
     <!-- Main Dashboard -->
     <main class="dashboard">
       <!-- Business Bank Account Card -->
@@ -425,8 +421,7 @@
       function toggleMenu() {
         const navMenu = document.querySelector('.nav-menu');
         navMenu.classList.toggle('show');
-    }
-    
+    }  
     function toggleDropdown() {
         const dropdownContent = document.getElementById('dropdown-content');
         dropdownContent.classList.toggle('show');
@@ -512,11 +507,7 @@
           },
         },
       });
-
       //invoice
-
-    
-
       // Update loadInvoices to include delete button
       function loadInvoices() {
         const invoices = JSON.parse(localStorage.getItem("invoices")) || [];
@@ -538,7 +529,6 @@
           invoicesContainer.appendChild(invoiceCard);
         });
       }
-
       // Load invoices on page load
       window.onload = loadInvoices;
     </script>
