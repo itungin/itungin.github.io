@@ -8,23 +8,29 @@
 </head>
 <body>
     <!-- Navigation Bar -->
-    <header>
-        <nav>
-            <ul class="nav-menu">
-                <li><a href="index.html" >Dashboard</a></li>
-                <li><a href="Business.html" >Business</a></li>
-                <li><a href="Accounting.html" >Accounting</a></li>
-                <li><a href="Product.html">Product</a></li>
-                <li style="background-color: #97ced1;"><a href="Contacts.html" style="color: rgb(255, 255, 255);">Contact Us</a></li>
-            </ul>
-        </nav>
 
+
+    <header>
+        <!-- Tombol menu untuk perangkat mobile -->
+        <button class="menu-toggle" onclick="toggleMenu()">☰ Menu</button>
+    
+        <!-- Navigasi (disembunyikan pada perangkat mobile) -->
+        <nav>
+          <ul class="nav-menu">
+            <li><a href="index.html">Dashboard</a></li>
+            <li><a href="Business.html" >Business</a></li>
+            <li><a href="Accounting.html">Accounting</a></li>
+            <li><a href="Product.html">Product</a></li>
+            <li style="background-color: #97ced1;"><a href="Contacts.html" style="color: rgb(255, 255, 255);">Contact Us</a></li>
+          </ul>
+        </nav>
+    
+        <!-- Profil pengguna -->
         <div class="user-profile">
-            <img src="static/img/ImageAcc.png" alt="User Profile" class="user-image" id="user-avatar">
+            <img src="/Dummy/static/img/ImageAcc.png" alt="User Profile" class="user-image" id="user-avatar" />
             <div class="dropdown" id="profile-dropdown">
                 <button onclick="toggleDropdown()" class="dropbtn">▼</button>
                 <div class="dropdown-content" id="dropdown-content">
-                    <!-- <a href="#">Account Settings</a> -->
                     <a href="profile.html">Profile</a>
                     <a href="LP.html">Logout</a>
                 </div>
@@ -85,6 +91,17 @@
     </div>
 
     <!-- EmailJS Script Integration -->
+     <script>
+        function toggleMenu() {
+            const navMenu = document.querySelector('.nav-menu');
+            navMenu.classList.toggle('show');
+        }
+        
+        function toggleDropdown() {
+            const dropdownContent = document.getElementById('dropdown-content');
+            dropdownContent.classList.toggle('show');
+        }
+     </script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script type="text/javascript">
         (function() {
