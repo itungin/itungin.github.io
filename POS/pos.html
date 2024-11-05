@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>POS Application</title>
+  <link rel="stylesheet" href="/static/css/pos.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>POS Application</h1>
+    </header>
+
+    <div class="main-content">
+      <section class="products">
+        <h2>Daftar Produk</h2>
+        <div class="product-list">
+          <!-- Contoh Produk, Tambahkan produk lainnya sesuai kebutuhan -->
+          <div class="product">
+            <h3>Produk 1</h3>
+            <p>Harga: Rp50.000</p>
+            <button class="add-to-cart">Tambah ke Keranjang</button>
+          </div>
+          <div class="product">
+            <h3>Produk 2</h3>
+            <p>Harga: Rp75.000</p>
+            <button class="add-to-cart">Tambah ke Keranjang</button>
+          </div>
+          <!-- Tambahkan produk lainnya -->
+        </div>
+      </section>
+
+      <section class="cart">
+        <h2>Keranjang Belanja</h2>
+        <div class="cart-items">
+          <!-- Daftar item keranjang akan muncul di sini -->
+        </div>
+        <div class="cart-total">
+          <p>Total: <span id="total-price">Rp0</span></p>
+          <button class="checkout">Checkout</button>
+        </div>
+      </section>
+    </div>
+  </div>
+</body>
+</html>
