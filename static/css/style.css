@@ -1,3 +1,4 @@
+/* Styling dasar */
 *, *:before, *:after {
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
@@ -10,21 +11,27 @@
     box-sizing: border-box;
 }
 
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #F9F9F9;
+}
+
 /* Header */
 header {
-    background-color: #34a0a4;
-    padding: 10px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background-color: #34a0a4;
+    padding: 10px 20px;
     color: white;
 }
 
-.nav-menu {
+/* .nav-menu {
     list-style: none;
     display: flex;
     justify-content: center;
     padding: 0;
+    flex-wrap: wrap;
 }
 
 .nav-menu li {
@@ -34,6 +41,20 @@ header {
     padding: 10px;
     border-radius: 5px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+} */
+
+.nav-menu {
+    list-style: none;
+    display: flex;
+    padding: 0;
+}
+
+.nav-menu li {
+    margin: 0 10px;
+    cursor: pointer;
+    background-color: #e5f4f6;
+    padding: 10px;
+    border-radius: 5px;
 }
 
 .nav-menu li a {
@@ -60,8 +81,9 @@ header {
     margin-left: 10px;
     cursor: pointer;
 }
+
+/* Button */
 button {
-    /* background-color: #3F72AF; */
     color: white;
     border: none;
     padding: 10px;
@@ -76,7 +98,7 @@ button:hover {
     transform: scale(1.05);
 }
 
-
+/* Dropdown */
 .dropdown {
     position: relative;
     display: inline-block;
@@ -119,6 +141,7 @@ button:hover {
     display: block;
 }
 
+/* Main and Stats */
 main {
     padding: 2rem;
 }
@@ -141,6 +164,7 @@ main {
     margin-bottom: 10px;
 }
 
+/* Section and Lists */
 section {
     margin-top: 2rem;
 }
@@ -188,6 +212,17 @@ ul li:hover {
     list-style: none;
 }
 
+/* Typography */
+h1, h2, h3 {
+    color: #34a0a4;
+    margin-bottom: 20px;
+    font-family: 'Poppins', sans-serif;
+}
+
+p {
+    color: #022324;
+}
+
 .balance {
     color: green;
 }
@@ -211,20 +246,7 @@ ul li:hover {
     margin-right: 90px;
 }
 
-/* Body General Styling */
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #F9F9F9;
-}
-
-/* Typography */
-h1, h2, h3 {
-    color: #34a0a4;
-    margin-bottom: 20px;
-    font-family: 'Poppins', sans-serif;
-}
-
-/* Business Dashboard Section */
+/* Business Dashboard */
 .business-dashboard {
     padding: 40px;
     background-color: #d4e6e7;
@@ -237,6 +259,7 @@ h1, h2, h3 {
     color: #34a0a4;
 }
 
+/* Statistics */
 .statistics {
     display: flex;
     justify-content: space-between;
@@ -331,35 +354,63 @@ table td {
     color: #146366;
 }
 
+a {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+}
+
 /* Responsive Design */
-@media (max-width: 768px) {
-    .statistics {
+@media (max-width: 1024px) {
+    /* Dashboard and cards */
+    .dashboard {
+        grid-template-columns: 1fr;
+    }
+
+    .statistics, .data-section {
         flex-direction: column;
     }
 
     .stat-card {
         margin-bottom: 20px;
     }
-
-    .data-section {
-        flex-direction: column;
-    }
 }
 
-a {
-    color: rgb(255, 255, 255);
-    text-decoration: none;
-}
-
-p {
-    color: #022324;
-}
-
-.table-switcher .btn {
-    background-color: #3F72AF;
+.menu-toggle {
+    display: none;
+    font-size: 20px;
+    background-color: transparent;
     color: white;
-    padding: 10px 20px;
     border: none;
-    border-radius: 5px;
     cursor: pointer;
+}
+
+/* Responsif untuk perangkat mobile */
+@media (max-width: 768px) {
+    /* Sembunyikan navigasi dan tampilkan tombol menu */
+    .nav-menu {
+        display: none; /* Sembunyikan menu pada perangkat mobile */
+        flex-direction: column;
+        width: 100%;
+        background-color: #34a0a4;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        z-index: 1;
+        padding: 0;
+    }
+
+    .nav-menu li {
+        margin: 0;
+        padding: 15px;
+        border-bottom: 1px solid #e5f4f6;
+    }
+
+    .menu-toggle {
+        display: block; /* Tampilkan tombol menu pada perangkat mobile */
+    }
+
+    /* Tampilkan menu dropdown saat kelas 'show' ditambahkan */
+    .nav-menu.show {
+        display: flex;
+    }
 }
