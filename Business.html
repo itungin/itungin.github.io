@@ -10,7 +10,13 @@
 
 <body>
   <!-- Navigation Bar -->
+
+
   <header>
+    <!-- Tombol menu untuk perangkat mobile -->
+    <button class="menu-toggle" onclick="toggleMenu()">☰ Menu</button>
+
+    <!-- Navigasi (disembunyikan pada perangkat mobile) -->
     <nav>
       <ul class="nav-menu">
         <li><a href="index.html">Dashboard</a></li>
@@ -22,18 +28,19 @@
         <li><a href="Contacts.html">Contact Us</a></li>
       </ul>
     </nav>
+
+    <!-- Profil pengguna -->
     <div class="user-profile">
-      <img src="/Dummy/static/img/ImageAcc.png" alt="User Profile" class="user-image" id="user-avatar" />
-      <div class="dropdown" id="profile-dropdown">
-        <button onclick="toggleDropdown()" class="dropbtn">▼</button>
-        <div class="dropdown-content" id="dropdown-content">
-          <!-- <a href="#">Account Settings</a> -->
-          <a href="profile.html">Profile</a>
-          <a href="LP.html">Logout</a>
+        <img src="/Dummy/static/img/ImageAcc.png" alt="User Profile" class="user-image" id="user-avatar" />
+        <div class="dropdown" id="profile-dropdown">
+            <button onclick="toggleDropdown()" class="dropbtn">▼</button>
+            <div class="dropdown-content" id="dropdown-content">
+                <a href="profile.html">Profile</a>
+                <a href="LP.html">Logout</a>
+            </div>
         </div>
-      </div>
     </div>
-  </header>
+</header>
 
   <!-- Main Business Dashboard Content -->
   <div class="business-dashboard">
@@ -153,6 +160,17 @@
   </div>
 
   <script src="static/js/business.js"></script>
+  <script>
+    function toggleMenu() {
+      const navMenu = document.querySelector('.nav-menu');
+      navMenu.classList.toggle('show');
+  }
+  
+  function toggleDropdown() {
+      const dropdownContent = document.getElementById('dropdown-content');
+      dropdownContent.classList.toggle('show');
+  }
+  </script>
 </body>
 
 </html>
