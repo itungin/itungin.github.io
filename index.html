@@ -221,34 +221,34 @@
     <!-- Navigation Bar -->
     <header>
       <!-- Tombol menu untuk perangkat mobile -->
-      <button class="menu-toggle" onclick="toggleMenu()">☰ Menu</button>
-  
+      <button class="menu-toggle" aria-expanded="false" onclick="toggleMenu()">☰ Menu</button>
+    
       <!-- Navigasi (disembunyikan pada perangkat mobile) -->
       <nav>
-          <ul class="nav-menu">
-              <li style="background-color: #97ced1">
-                  <a href="index.html" style="color: rgb(255, 255, 255)">Dashboard</a>
-              </li>
-              <li><a href="Business.html">Business</a></li>
-              <li><a href="Accounting.html">Accounting</a></li>
-              <li><a href="Product.html">Product</a></li>
-              <li><a href="Contacts.html">Contact Us</a></li>
-          </ul>
+        <ul class="nav-menu">
+          <li style="background-color: #97ced1">
+            <a href="index.html" style="color: rgb(255, 255, 255)">Dashboard</a>
+          </li>
+          <li><a href="Business.html">Business</a></li>
+          <li><a href="Accounting.html">Accounting</a></li>
+          <li><a href="Product.html">Product</a></li>
+          <li><a href="Contacts.html">Contact Us</a></li>
+        </ul>
       </nav>
-  
+    
       <!-- Profil pengguna -->
       <div class="user-profile">
-          <img src="/Dummy/static/img/ImageAcc.png" alt="User Profile" class="user-image" id="user-avatar" />
-          <div class="dropdown" id="profile-dropdown">
-              <button onclick="toggleDropdown()" class="dropbtn">▼</button>
-              <div class="dropdown-content" id="dropdown-content">
-                  <a href="profile.html">Profile</a>
-                  <a href="LP.html">Logout</a>
-              </div>
+        <img src="/Dummy/static/img/ImageAcc.png" alt="User Profile" class="user-image" id="user-avatar" />
+        <div class="dropdown" id="profile-dropdown">
+          <button onclick="toggleDropdown()" class="dropbtn">▼</button>
+          <div class="dropdown-content" id="dropdown-content">
+            <a href="profile.html">Profile</a>
+            <a href="LP.html">Logout</a>
           </div>
+        </div>
       </div>
-  </header>
-  
+    </header>
+    
 
     <!-- Main Dashboard -->
     <main class="dashboard">
