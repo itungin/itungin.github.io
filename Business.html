@@ -28,10 +28,9 @@
         <li><a href="Contacts.html">Contact Us</a></li>
       </ul>
     </nav>
-
     <!-- Profil pengguna -->
     <div class="user-profile">
-        <img src="/Dummy/static/img/ImageAcc.png" alt="User Profile" class="user-image" id="user-avatar" />
+        <img src="static/img/ImageAcc.png" alt="User Profile" class="user-image" id="user-avatar" />
         <div class="dropdown" id="profile-dropdown">
             <button onclick="toggleDropdown()" class="dropbtn">▼</button>
             <div class="dropdown-content" id="dropdown-content">
@@ -41,7 +40,6 @@
         </div>
     </div>
 </header>
-
   <!-- Main Business Dashboard Content -->
   <div class="business-dashboard">
     <h1>Business Overview</h1>
@@ -67,8 +65,6 @@
       <button onclick="showSales()">Product Sales Transactions</button>
       <button onclick="showExpenses()">Expense Transactions</button>
     </div>
-
-
     <!-- Sales Transactions Table -->
     <div class="table-container" id="salesTable">
       <h2>Sales Transactions
@@ -76,8 +72,6 @@
           <button class="export-csv-btn" onclick="exportCurrentTableToCSV()">Export to CSV</button>
         </div>
       </h2>
-
-
       <table>
         <thead>
           <tr>
@@ -93,7 +87,6 @@
         </tbody>
       </table>
     </div>
-
     <!-- Expense Transactions Table -->
     <div class="table-container hidden" id="expensesTable">
       <h2>Expense Transactions
@@ -172,5 +165,4 @@
   }
   </script>
 </body>
-
 </html>
