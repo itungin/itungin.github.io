@@ -47,10 +47,24 @@
           <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
               <a class="p-2 nav-link" href="pos.html"><i class="bi bi-house"></i> Home</a>
-              <a class="p-2 nav-link" href="gudang.html"><i class="bi bi-building"></i> Gudang</a>
-              <a class="p-2 nav-link active" href="barang.html"><i class="bi bi-basket"></i> Barang</a>
+              <a class="p-2 nav-link active" href="gudang.html"><i class="bi bi-building"></i> Gudang</a>
+              <a class="p-2 nav-link" href="barang.html"><i class="bi bi-basket"></i> Barang</a>
               <a class="p-2 nav-link" href="kasir.html"><i class="bi bi-cart"></i> Kasir</a>
-              <!-- Add more links as needed -->
+              <div class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                  data-bs-toggle="dropdown" aria-expanded="false">
+                  <i class="bi bi-person-fill"></i> Admin
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <li><a class="dropdown-item" href="#">User</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="#">Pemasukan</a></li>
+                  <li><a class="dropdown-item" href="#">Pengeluaran</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="#">Master Data</a></li>
+                  <li><a class="dropdown-item" href="#">Pengaturan Toko</a></li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
@@ -69,6 +83,7 @@
           <th>Name</th>
           <th>Price</th>
           <th>Category</th>
+          <th>Quantity</th>
           <th>Actions</th>
         </tr>
       </thead>
@@ -76,59 +91,81 @@
         <!-- Product items will be populated here -->
       </tbody>
     </table>
+    <button id="checkoutBtn" class="btn btn-success">Go to Checkout</button>
   </main>
-
   <!-- JavaScript to fetch, filter, and display product data with Vpot functionality -->
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
+  
   <script>
-    async function fetchBarangData() {
-      try {
-        const response = await fetch("https://asia-southeast2-awangga.cloudfunctions.net/itungin/products");
-        let data = await response.json();
+    // Sample data for demo purposes
+    const products = [
+      { id: 1, name: 'Product A', price: 100, category: 'Category 1' },
+      { id: 2, name: 'Product B', price: 150, category: 'Category 2' },
+      // Add more sample products as needed
+    ];
+    
+    const checkoutItems = {}; // Store selected items and their quantities
 
-        // Step 1: Remove duplicates based on 'Product ID' and sort by timestamp
-        const uniqueProducts = [];
-        const productMap = {};
+    // Populate the table with products and buttons
+    function populateTable() {
+      const tableBody = document.querySelector("#barangTable tbody");
+      products.forEach((product) => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${product.id}</td>
+          <td>${product.name}</td>
+          <td>${product.price}</td>
+          <td>${product.category}</td>
+          <td id="quantity-${product.id}">0</td>
+          <td>
+            <button class="btn btn-sm btn-success" onclick="incrementQuantity(${product.id})">+</button>
+            <button class="btn btn-sm btn-warning" onclick="decrementQuantity(${product.id})">-</button>
+            <button class="btn btn-sm btn-primary" onclick="confirmItem(${product.id})">Ok</button>
+          </td>
+        `;
+        tableBody.appendChild(row);
+      });
+    }
 
-        data.forEach(product => {
-          if (!productMap[product.id]) {
-            productMap[product.id] = product;
-            uniqueProducts.push(product);
-          }
-        });
+    // Increase item quantity
+    function incrementQuantity(id) {
+      const quantityCell = document.getElementById(`quantity-${id}`);
+      const quantity = parseInt(quantityCell.textContent) + 1;
+      quantityCell.textContent = quantity;
+    }
 
-        // Sort uniqueProducts by timestamp if it exists
-        uniqueProducts.sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
+    // Decrease item quantity
+    function decrementQuantity(id) {
+      const quantityCell = document.getElementById(`quantity-${id}`);
+      const quantity = Math.max(0, parseInt(quantityCell.textContent) - 1);
+      quantityCell.textContent = quantity;
+    }
 
-        // Step 2: Populate table with unique and sorted data
-        const tableBody = document.querySelector("#barangTable tbody");
-        tableBody.innerHTML = ""; // Clear existing rows
-
-        uniqueProducts.forEach(product => {
-          const row = document.createElement("tr");
-          row.innerHTML = `
-            <td>${product.id}</td>
-            <td>${product.name}</td>
-            <td>${product.price}</td>
-            <td>${product.category}</td>
-            <td>
-              <button class="btn btn-primary btn-sm">Edit</button>
-              <button class="btn btn-danger btn-sm">Delete</button>
-            </td>
-          `;
-          tableBody.appendChild(row);
-        });
-
-        // Initialize DataTable for search and pagination
-        $('#barangTable').DataTable({
-          responsive: true
-        });
-      } catch (error) {
-        console.error("Error fetching product data:", error);
+    // Add the selected item to checkout list and reset quantity display
+    function confirmItem(id) {
+      const quantity = parseInt(document.getElementById(`quantity-${id}`).textContent);
+      if (quantity > 0) {
+        checkoutItems[id] = quantity;
+        alert(`Item with ID ${id} confirmed with quantity: ${quantity}`);
+        document.getElementById(`quantity-${id}`).textContent = '0'; // Reset after confirming
+      } else {
+        alert("Quantity must be greater than 0");
       }
     }
 
-    // Call the function when the page loads
-    document.addEventListener("DOMContentLoaded", fetchBarangData);
+    // Handle checkout button to move to kasir.html
+    document.getElementById("checkoutBtn").addEventListener("click", function() {
+      localStorage.setItem("checkoutItems", JSON.stringify(checkoutItems));
+      window.location.href = "kasir.html";
+    });
+
+    // Initialize the table on page load
+    document.addEventListener("DOMContentLoaded", function() {
+      populateTable();
+      $('#barangTable').DataTable();
+    });
   </script>
 
 </body>
