@@ -33,6 +33,52 @@
     .dataTables_paginate a {
       padding: 0 10px;
     }
+
+    /* CSS untuk mengatur tampilan tabel agar lebih rapi */
+table.dataTable td {
+  white-space: nowrap; /* Memastikan teks tidak terputus menjadi beberapa baris */
+  vertical-align: middle; /* Posisikan teks di tengah secara vertikal */
+}
+
+table.dataTable th {
+  white-space: nowrap;
+  text-align: center; /* Posisikan judul tabel di tengah */
+}
+
+table.dataTable tbody td {
+  padding: 8px 12px; /* Memberikan ruang untuk teks dalam tabel */
+}
+
+#dt_wrapper .dataTables_paginate {
+  display: flex;
+  justify-content: flex-end;
+}
+
+table.dataTable.no-footer {
+  border-bottom: 1px solid #dee2e6;
+}
+
+/* Batasi lebar kolom deskripsi agar tidak terlalu panjang */
+#dt td:nth-child(4) { /* Kolom Description */
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#dt td:nth-child(2), #dt td:nth-child(3) { /* Kolom Name dan Category */
+  max-width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Atur ukuran tombol Edit dan Delete */
+button.btn-sm {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+}
+
   </style>
 
   <!-- Custom javascript for this template -->
