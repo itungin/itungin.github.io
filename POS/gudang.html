@@ -79,6 +79,78 @@ button.btn-sm {
   font-size: 0.875rem;
 }
 
+/* Pastikan tabel menggunakan lebar penuh layar */
+table.dataTable {
+  width: 100%;
+  table-layout: fixed; /* Memaksa kolom untuk memiliki lebar tetap */
+}
+
+table.dataTable th, table.dataTable td {
+  white-space: nowrap; /* Membuat teks tetap dalam satu baris */
+  overflow: hidden;
+  text-overflow: ellipsis; /* Menambahkan elipsis jika teks terlalu panjang */
+  vertical-align: middle; /* Menjaga teks tetap di tengah secara vertikal */
+}
+
+/* Batasi lebar kolom tertentu */
+#dt td:nth-child(4), #dt th:nth-child(4) { /* Kolom Deskripsi */
+  max-width: 200px;
+}
+
+#dt td:nth-child(2), #dt th:nth-child(2), /* Kolom Nama */
+#dt td:nth-child(3), #dt th:nth-child(3) { /* Kolom Kategori */
+  max-width: 150px;
+}
+
+/* Atur ukuran tabel menjadi responsif */
+.table-responsive {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Memastikan tombol tetap dalam satu baris */
+button.btn-sm {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+}
+
+
+
+/* Pastikan tabel menggunakan lebar penuh layar */
+table.dataTable {
+  width: 100%;
+  table-layout: fixed; /* Memaksa kolom untuk memiliki lebar tetap */
+}
+
+table.dataTable th, table.dataTable td {
+  white-space: nowrap; /* Membuat teks tetap dalam satu baris */
+  overflow: hidden;
+  text-overflow: ellipsis; /* Menambahkan elipsis jika teks terlalu panjang */
+  vertical-align: middle; /* Menjaga teks tetap di tengah secara vertikal */
+}
+
+/* Batasi lebar kolom tertentu */
+#dt td:nth-child(4), #dt th:nth-child(4) { /* Kolom Deskripsi */
+  max-width: 200px;
+}
+
+#dt td:nth-child(2), #dt th:nth-child(2), /* Kolom Nama */
+#dt td:nth-child(3), #dt th:nth-child(3) { /* Kolom Kategori */
+  max-width: 150px;
+}
+
+/* Atur ukuran tabel menjadi responsif */
+.table-responsive {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Memastikan tombol tetap dalam satu baris */
+button.btn-sm {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+}
+
   </style>
 
   <!-- Custom javascript for this template -->
