@@ -15,7 +15,8 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #d4e6e7; /* Updated to match product page background */
+    background-color: #d4e6e7;
+    /* Updated to match product page background */
 }
 
 /* Typography */
@@ -168,7 +169,8 @@ button:hover {
     margin-top: -10px;
 }
 
-.add-product-btn, .export-csv-btn {
+.add-product-btn,
+.export-csv-btn {
     background-color: #298588;
     color: white;
     border: none;
@@ -179,12 +181,14 @@ button:hover {
     margin-left: 10px;
 }
 
-.add-product-btn:hover,.export-csv-btn:hover {
+.add-product-btn:hover,
+.export-csv-btn:hover {
     background-color: #1c7376;
     transform: scale(1.05);
 }
 
-.add-product-btn:focus, .export-csv-btn:focus {
+.add-product-btn:focus,
+.export-csv-btn:focus {
     outline: none;
 }
 
@@ -202,6 +206,7 @@ button:hover {
     border: 1px solid #ccc;
     border-radius: 5px;
 }
+
 ::placeholder {
     color: #99babb;
 }
@@ -274,7 +279,8 @@ button:hover {
 }
 
 /* Button Styles for Edit and Delete */
-.btn-edit, .btn-delete {
+.btn-edit,
+.btn-delete {
     background: none;
     border: none;
     color: #000000;
@@ -284,81 +290,90 @@ button:hover {
 }
 
 .btn-edit:hover {
-    color: #28a745; /* Green color on hover */
+    color: #28a745;
+    /* Green color on hover */
     transform: scale(1.05);
+    background-color: transparent;
 }
 
 .btn-delete:hover {
-    color: #dc3545; /* Red color on hover */
+    color: #dc3545;
+    /* Red color on hover */
     transform: scale(1.05);
+    background-color: transparent;
 }
 
-                /* Responsivitas */
-                .menu-toggle {
-                    display: none;
-                    font-size: 20px;
-                    background-color: transparent;
-                    color: white;
-                    border: none;
-                    cursor: pointer;
-                }
-                
-                /* Responsif untuk perangkat mobile */
-                @media (max-width: 768px) {
-                  .dashboard {
-                    grid-template-columns: 1fr;
-                }
-                    /* Sembunyikan navigasi dan tampilkan tombol menu */
-                    .nav-menu {
-                        display: none; /* Sembunyikan menu pada perangkat mobile */
-                        flex-direction: column;
-                        width: 100%;
-                        background-color: #34a0a4;
-                        position: absolute;
-                        top: 60px;
-                        left: 0;
-                        z-index: 1;
-                        padding: 0;
-                    }
-                
-                    .nav-menu li {
-                        margin: 0;
-                        padding: 15px;
-                        border-bottom: 1px solid #e5f4f6;
-                    }
-                
-                    .menu-toggle {
-                        display: block; /* Tampilkan tombol menu pada perangkat mobile */
-                    }
-                
-                    /* Tampilkan menu dropdown saat kelas 'show' ditambahkan */
-                    .nav-menu.show {
-                        display: flex;
-                    }
-                
-                    /* Untuk menutup dropdown dengan klik di luar */
-                    .nav-menu-background {
-                        position: fixed;
-                        top: 0;
-                        left: 0;
-                        width: 100vw;
-                        height: 100vh;
-                        background: rgba(0, 0, 0, 0.4);
-                        display: none;
-                    }
-                
-                    .nav-menu-background.show {
-                        display: block;
-                    }
-                    .statistics {
-                        flex-direction: column;
-                    }
-                
-                    .stat-card {
-                        margin-bottom: 20px;
-                    }
-                
-                    .data-section {
-                        flex-direction: column;
-                    }
-                }
+
+/* Responsivitas */
+.menu-toggle {
+    display: none;
+    font-size: 20px;
+    background-color: transparent;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+/* Responsif untuk perangkat mobile */
+@media (max-width: 768px) {
+    .dashboard {
+        grid-template-columns: 1fr;
+    }
+
+    /* Sembunyikan navigasi dan tampilkan tombol menu */
+    .nav-menu {
+        display: none;
+        /* Sembunyikan menu pada perangkat mobile */
+        flex-direction: column;
+        width: 100%;
+        background-color: #34a0a4;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        z-index: 1;
+        padding: 0;
+    }
+
+    .nav-menu li {
+        margin: 0;
+        padding: 15px;
+        border-bottom: 1px solid #e5f4f6;
+    }
+
+    .menu-toggle {
+        display: block;
+        /* Tampilkan tombol menu pada perangkat mobile */
+    }
+
+    /* Tampilkan menu dropdown saat kelas 'show' ditambahkan */
+    .nav-menu.show {
+        display: flex;
+    }
+
+    /* Untuk menutup dropdown dengan klik di luar */
+    .nav-menu-background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.4);
+        display: none;
+    }
+
+    .nav-menu-background.show {
+        display: block;
+    }
+
+    .statistics {
+        flex-direction: column;
+    }
+
+    .stat-card {
+        margin-bottom: 20px;
+    }
+
+    .data-section {
+        flex-direction: column;
+    }
+}
