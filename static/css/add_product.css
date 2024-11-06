@@ -1,7 +1,7 @@
  /* Basic styling for the form */
  body {
-    background: #d8eaff; /* Change to your preferred background color */
-    font-family: Arial, sans-serif;
+    background: #d4e6e7; /* Change to your preferred background color */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     padding: 20px;
 }
 .container {
@@ -14,6 +14,7 @@
 }
 h1 {
     text-align: center;
+    
 }
 label {
     display: block;
