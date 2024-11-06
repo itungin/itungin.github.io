@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="">
-  <title>Gudang - Kasirku</title>
+  <title>Barang - Kasirku</title>
 
   <!-- Bootstrap core CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css">
@@ -16,27 +16,7 @@
   <link href="/static/css/pos.css" rel="stylesheet">
 
   <style>
-    #dt.dataTable.no-footer {
-      border-bottom: unset;
-    }
-
-    #dt tbody td {
-      display: block;
-      border: unset;
-    }
-
-    #dt>tbody>tr>td {
-      border-top: unset;
-    }
-
-    .dataTables_paginate {
-      display: flex;
-      align-items: center;
-    }
-
-    .dataTables_paginate a {
-      padding: 0 10px;
-    }
+    /* Additional custom styles here */
   </style>
 
   <!-- Custom javascript for this template -->
@@ -67,24 +47,10 @@
           <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
               <a class="p-2 nav-link" href="pos.html"><i class="bi bi-house"></i> Home</a>
-              <a class="p-2 nav-link active" href="gudang.html"><i class="bi bi-building"></i> Gudang</a>
-              <a class="p-2 nav-link" href="barang.html"><i class="bi bi-basket"></i> Barang</a>
+              <a class="p-2 nav-link" href="gudang.html"><i class="bi bi-building"></i> Gudang</a>
+              <a class="p-2 nav-link active" href="barang.html"><i class="bi bi-basket"></i> Barang</a>
               <a class="p-2 nav-link" href="kasir.html"><i class="bi bi-cart"></i> Kasir</a>
-              <div class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
-                  data-bs-toggle="dropdown" aria-expanded="false">
-                  <i class="bi bi-person-fill"></i> Admin
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                  <li><a class="dropdown-item" href="#">User</a></li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="#">Pemasukan</a></li>
-                  <li><a class="dropdown-item" href="#">Pengeluaran</a></li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="#">Master Data</a></li>
-                  <li><a class="dropdown-item" href="#">Pengaturan Toko</a></li>
-                </ul>
-              </div>
+              <!-- Add more links as needed -->
             </div>
           </div>
         </div>
@@ -92,25 +58,78 @@
     </div>
   </div>
   
-    <!-- Barang Content -->
-    <main class="container">
-      <h2>Barang</h2>
-      <p>Manage your products here.</p>
-      <table id="barangTable" class="table table-striped">
-        <thead>
-          <tr>
-            <th>Product ID</th>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Category</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <!-- Product items will be populated here -->
-        </tbody>
-      </table>
-    </main>
-  </div>
+  <!-- Barang Content -->
+  <main class="container">
+    <h2>Barang</h2>
+    <p>Manage your products here.</p>
+    <table id="barangTable" class="table table-striped">
+      <thead>
+        <tr>
+          <th>Product ID</th>
+          <th>Name</th>
+          <th>Price</th>
+          <th>Category</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Product items will be populated here -->
+      </tbody>
+    </table>
+  </main>
+
+  <!-- JavaScript to fetch, filter, and display product data with Vpot functionality -->
+  <script>
+    async function fetchBarangData() {
+      try {
+        const response = await fetch("https://asia-southeast2-awangga.cloudfunctions.net/itungin/products");
+        let data = await response.json();
+
+        // Step 1: Remove duplicates based on 'Product ID' and sort by timestamp
+        const uniqueProducts = [];
+        const productMap = {};
+
+        data.forEach(product => {
+          if (!productMap[product.id]) {
+            productMap[product.id] = product;
+            uniqueProducts.push(product);
+          }
+        });
+
+        // Sort uniqueProducts by timestamp if it exists
+        uniqueProducts.sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
+
+        // Step 2: Populate table with unique and sorted data
+        const tableBody = document.querySelector("#barangTable tbody");
+        tableBody.innerHTML = ""; // Clear existing rows
+
+        uniqueProducts.forEach(product => {
+          const row = document.createElement("tr");
+          row.innerHTML = `
+            <td>${product.id}</td>
+            <td>${product.name}</td>
+            <td>${product.price}</td>
+            <td>${product.category}</td>
+            <td>
+              <button class="btn btn-primary btn-sm">Edit</button>
+              <button class="btn btn-danger btn-sm">Delete</button>
+            </td>
+          `;
+          tableBody.appendChild(row);
+        });
+
+        // Initialize DataTable for search and pagination
+        $('#barangTable').DataTable({
+          responsive: true
+        });
+      } catch (error) {
+        console.error("Error fetching product data:", error);
+      }
+    }
+
+    // Call the function when the page loads
+    document.addEventListener("DOMContentLoaded", fetchBarangData);
+  </script>
+
 </body>
 </html>
