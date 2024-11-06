@@ -15,7 +15,7 @@ function showExpenses() {
 }
 
 async function fetchSalesData() {
-    const response = await fetch('http://localhost:8081/transaksi');
+    const response = await fetch('https://asia-southeast2-awangga.cloudfunctions.net/itungin/sales');
     const salesData = await response.json();
     const salesTableBody = document.getElementById('salesTableBody');
     salesTableBody.innerHTML = '';
@@ -34,7 +34,7 @@ async function fetchSalesData() {
 }
 
 async function fetchExpensesData() {
-    const response = await fetch('http://localhost:8081/expense');
+    const response = await fetch('https://asia-southeast2-awangga.cloudfunctions.net/itungin/expense');
     const expensesData = await response.json();
     const expensesTableBody = document.getElementById('expensesTableBody');
     expensesTableBody.innerHTML = '';
@@ -51,7 +51,7 @@ async function fetchExpensesData() {
 }
 
 async function fetchCustomers() {
-    const response = await fetch('http://localhost:8081/customers');
+    const response = await fetch('https://asia-southeast2-awangga.cloudfunctions.net/itungin/pelanggan');
     const customersData = await response.json();
     const customersTableBody = document.getElementById('customersTableBody');
     customersTableBody.innerHTML = '';
@@ -88,6 +88,12 @@ function exportToCSV(tableId, filename) {
     a.click();
     URL.revokeObjectURL(url);
 }
+
+const salesTable = document.getElementById('salesTable');
+const expensesTable = document.getElementById('expensesTable');
+const salesTableBody = document.getElementById('salesTableBody');
+const expensesTableBody = document.getElementById('expensesTableBody');
+const customersTableBody = document.getElementById('customersTableBody');
 
 // Fetch initial data
 showSales();
