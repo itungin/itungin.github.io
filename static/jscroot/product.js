@@ -1,5 +1,6 @@
 // Import JSCroot from the CDN (pastikan JSCroot sudah di-load sebelum script ini dijalankan)
-<script src="https://path-to-jscroot-cdn.js"></script>
+{/* <script src="https://path-to-jscroot-cdn.js"></script> */}
+import JSCroot from 'https://cdn.jsdelivr.net/gh/jscroot/lib@0.0.1/api.js';
 
 // Function to format numbers as Rupiah
 function formatRupiah(number) {
