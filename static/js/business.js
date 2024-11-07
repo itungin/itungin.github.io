@@ -34,7 +34,7 @@ async function fetchSalesData() {
 }
 
 async function fetchExpensesData() {
-    const response = await fetch('https://asia-southeast2-awangga.cloudfunctions.net/itungin/expense');
+    const response = await fetch('https://asia-southeast2-awangga.cloudfunctions.net/itungin/expenses');
     const expensesData = await response.json();
     const expensesTableBody = document.getElementById('expensesTableBody');
     expensesTableBody.innerHTML = '';
@@ -51,7 +51,7 @@ async function fetchExpensesData() {
 }
 
 async function fetchCustomers() {
-    const response = await fetch('https://asia-southeast2-awangga.cloudfunctions.net/itungin/pelanggan');
+    const response = await fetch('https://asia-southeast2-awangga.cloudfunctions.net/itungin/customers');
     const customersData = await response.json();
     const customersTableBody = document.getElementById('customersTableBody');
     customersTableBody.innerHTML = '';
@@ -97,4 +97,5 @@ const customersTableBody = document.getElementById('customersTableBody');
 
 // Fetch initial data
 showSales();
+showExpenses();
 fetchCustomers();
