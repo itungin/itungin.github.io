@@ -11,7 +11,7 @@ async function submitExpense(event) {
     };
 
     try {
-        const response = await fetch('http://localhost:8081/expense', {
+        const response = await fetch('https://asia-southeast2-awangga.cloudfunctions.net/itungin/expense', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
