@@ -160,7 +160,7 @@ function formatRupiah(number) {
     if (confirm("Are you sure you want to delete this product?")) {
       try {
         const response = await fetch(
-          `https://asia-southeast2-awangga.cloudfunctions.net/itungin/products/${productId}`,
+          `https://asia-southeast2-awangga.cloudfunctions.net/itungin/products?id=${productId}`,
           {
             method: "DELETE",
           }
