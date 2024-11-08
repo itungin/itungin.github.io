@@ -1,6 +1,5 @@
-// Import JSCroot from the CDN (pastikan JSCroot sudah di-load sebelum script ini dijalankan)
-{/* <script src="https://path-to-jscroot-cdn.js"></script> */}
-import JSCroot from 'https://cdn.jsdelivr.net/gh/jscroot/lib@0.0.1/api.js';
+// Import the JSCroot library
+import * as JSCroot from 'https://cdn.jsdelivr.net/gh/jscroot/lib@0.0.1/api.js';
 
 // Function to format numbers as Rupiah
 function formatRupiah(number) {
@@ -15,12 +14,11 @@ let products = [];
 let currentPage = 1;
 const itemsPerPage = 8; // Number of products per page
 
-// Function to fetch products from the backend using JSCroot
+// Function to fetch products from the backend
 async function fetchProducts() {
     try {
-        products = await JSCroot.get(
-            "https://asia-southeast2-awangga.cloudfunctions.net/itungin/products"
-        ); // Updated URL
+        const response = await JSCroot.get("https://asia-southeast2-awangga.cloudfunctions.net/itungin/products");
+        products = await response.json(); // Parse the response as JSON
 
         // Render the product table with initial page
         renderProductTable(products, currentPage);
@@ -79,14 +77,76 @@ document.getElementById("product-table").addEventListener("click", function (eve
     }
 });
 
-// Function to delete a product using JSCroot
+// Function to setup pagination
+function setupPagination(productsArray) {
+    const paginationElement = document.getElementById("pagination");
+    paginationElement.innerHTML = ""; // Clear existing pagination links
+
+    const totalPages = Math.ceil(productsArray.length / itemsPerPage); // Calculate total pages
+
+    // Create "Previous" button
+    const prevButton = document.createElement("a");
+    prevButton.href = "#";
+    prevButton.innerHTML = "&laquo;";
+    prevButton.addEventListener("click", () => {
+        if (currentPage > 1) {
+            currentPage--;
+            renderProductTable(products, currentPage);
+            updatePaginationLinks();
+        }
+    });
+    paginationElement.appendChild(prevButton);
+
+    // Create page number links
+    for (let i = 1; i <= totalPages; i++) {
+        const pageLink = document.createElement("a");
+        pageLink.href = "#";
+        pageLink.innerText = i;
+        if (i === currentPage) {
+            pageLink.classList.add("active");
+        }
+        pageLink.addEventListener("click", (event) => {
+            currentPage = i;
+            renderProductTable(products, currentPage);
+            updatePaginationLinks();
+        });
+        paginationElement.appendChild(pageLink);
+    }
+
+    // Create "Next" button
+    const nextButton = document.createElement("a");
+    nextButton.href = "#";
+    nextButton.innerHTML = "&raquo;";
+    nextButton.addEventListener("click", () => {
+        if (currentPage < totalPages) {
+            currentPage++;
+            renderProductTable(products, currentPage);
+            updatePaginationLinks();
+        }
+    });
+    paginationElement.appendChild(nextButton);
+}
+
+// Function to update the active page link in the pagination
+function updatePaginationLinks() {
+    const paginationLinks = document.querySelectorAll("#pagination a");
+    paginationLinks.forEach((link) => link.classList.remove("active"));
+
+    // Highlight the current page link
+    paginationLinks[currentPage].classList.add("active");
+}
+
+// Function to edit a product
+function editProduct(productId) {
+    // Redirect to edit page, passing the product ID as a query parameter
+    window.location.href = `Editproduct.html?id=${productId}`;
+}
+
+// Function to delete a product
 async function deleteProduct(productId) {
     if (confirm("Are you sure you want to delete this product?")) {
         try {
-            const response = await JSCroot.delete(
-                `https://asia-southeast2-awangga.cloudfunctions.net/itungin/products/${productId}`
-            );
-
+            const response = await JSCroot.delete(`https://asia-southeast2-awangga.cloudfunctions.net/itungin/products?id=${productId}`);
             if (response.ok) {
                 alert("Product deleted successfully!");
                 fetchProducts(); // Reload the product list after deletion
@@ -99,17 +159,48 @@ async function deleteProduct(productId) {
     }
 }
 
-// Remaining functions: setupPagination, updatePaginationLinks, editProduct, etc.
-// These functions remain the same, as they do not require `fetch` or `JSCroot`
-// ...
+// Search Functionality
+function searchProducts() {
+    const searchQuery = document.getElementById("search-bar").value.toLowerCase();
+    const filteredProducts = products.filter(
+        (product) =>
+            product.name.toLowerCase().includes(searchQuery) ||
+            product.category.toLowerCase().includes(searchQuery) ||
+            product.description.toLowerCase().includes(searchQuery)
+    );
+    renderProductTable(filteredProducts, currentPage);
+    setupPagination(filteredProducts); // Update pagination based on filtered products
+}
+
+// Sort Functionality
+function sortProducts() {
+    const sortOption = document.getElementById("sort-options").value;
+    let sortedProducts = [...products];
+
+    if (sortOption === "name") {
+        sortedProducts.sort((a, b) => a.name.localeCompare(b.name));
+    } else if (sortOption === "price") {
+        sortedProducts.sort((a, b) => a.price - b.price);
+    } else if (sortOption === "category") {
+        sortedProducts.sort((a, b) => a.category.localeCompare(b.category));
+    } else if (sortOption === "stock") {
+        sortedProducts.sort((a, b) => a.stock - b.stock);
+    }
+
+    renderProductTable(sortedProducts, currentPage);
+    setupPagination(sortedProducts); // Update pagination based on sorted products
+}
+
+// Add event listeners for search and sort
+document.getElementById("search-bar").addEventListener("input", searchProducts);
+document.getElementById("sort-options").addEventListener("change", sortProducts);
 
 // Call the function to fetch and display products when the page loads
 window.onload = fetchProducts;
 
 // Event listeners for adding new product and exporting to CSV
 document.getElementById("exportCsvBtn").addEventListener("click", function () {
-    window.location.href =
-        "https://asia-southeast2-awangga.cloudfunctions.net/itungin/products-export-csv"; // Updated URL
+    window.location.href = "https://asia-southeast2-awangga.cloudfunctions.net/itungin/products-export-csv";
 });
 
 document.getElementById("addProductBtn").addEventListener("click", function () {
