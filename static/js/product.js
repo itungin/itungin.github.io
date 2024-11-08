@@ -152,7 +152,7 @@ function formatRupiah(number) {
   // Function to edit a product
   function editProduct(productId) {
     // Redirect to edit page, passing the product ID as a query parameter
-    window.location.href = `EditProduct.html?id=${productId}`;
+    window.location.href = `Editproduct.html?id=${productId}`;
   }
   
   // Function to delete a product
