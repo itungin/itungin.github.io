@@ -29,10 +29,15 @@
         <button type="submit">Update Product</button>
     </form>
 
-    <button class="back-btn" a href="Product.html">Back to Product Page</button>
+    <button class="back-btn" id="Backproductbtn">Back to Product Page</button>
+
 </div>
 
 <script>
+    document.getElementById("Backproductbtn").addEventListener("click", function () {
+        window.location.href = "Product.html";
+      });
+
     async function fetchProductById(productId) {
         try {
             console.log(`Fetching product with ID: ${productId}`);
