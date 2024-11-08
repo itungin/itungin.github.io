@@ -1,47 +1,57 @@
-    import JSCroot from 'https://cdn.jsdelivr.net/gh/jscroot/lib@0.0.1/api.js';
+// Import JSCroot library for API handling
+import * as JSCroot from 'https://cdn.jsdelivr.net/gh/jscroot/lib@0.0.1/api.js';
 
-    // Data dummy untuk faktur dan pengeluaran
-    const invoices = [
-        { id: 1, description: 'Faktur 001', amount: 5000000 },
-        { id: 2, description: 'Faktur 002', amount: 3000000 },
-    ];
-
-    const expenses = [
-        { id: 1, description: 'Pembelian Barang', amount: 1000000 },
-        { id: 2, description: 'Pembayaran Gaji', amount: 2000000 },
-    ];
-
-    // Fungsi untuk menampilkan faktur
-    async function displayInvoices() {
-        const invoiceList = document.getElementById('invoice-list');
-        invoiceList.innerHTML = ''; // Kosongkan daftar faktur
-
-        for (const invoice of invoices) {
-            const li = document.createElement('li');
-            // Misalnya, enkripsi data sebelum menampilkannya
-            const encryptedDescription = await JSCroot.encryptData(invoice.description);
-            li.textContent = `${encryptedDescription} - Rp ${invoice.amount}`;
-            invoiceList.appendChild(li);
-        }
+// Fetch data for invoices and expenses from backend (replace dummy data)
+async function fetchInvoices() {
+    try {
+        const response = await JSCroot.get('https://your-backend-api-url.com/invoices'); // Update with actual endpoint
+        return await response.json();
+    } catch (error) {
+        console.error('Error fetching invoices:', error);
+        return []; // Return an empty array on error
     }
+}
 
-    // Fungsi untuk menampilkan pengeluaran
-    async function displayExpenses() {
-        const expenseList = document.getElementById('expense-list');
-        expenseList.innerHTML = ''; // Kosongkan daftar pengeluaran
-
-        for (const expense of expenses) {
-            const li = document.createElement('li');
-            // Enkripsi deskripsi pengeluaran
-            const encryptedDescription = await JSCroot.encryptData(expense.description);
-            li.textContent = `${encryptedDescription} - Rp ${expense.amount}`;
-            expenseList.appendChild(li);
-        }
+async function fetchExpenses() {
+    try {
+        const response = await JSCroot.get('https://your-backend-api-url.com/expenses'); // Update with actual endpoint
+        return await response.json();
+    } catch (error) {
+        console.error('Error fetching expenses:', error);
+        return []; // Return an empty array on error
     }
+}
 
-    // Panggil fungsi untuk menampilkan data saat halaman dimuat
-    window.onload = async function () {
-        await displayInvoices();
-        await displayExpenses();
-    };
+// Function to display invoices on the page
+async function displayInvoices() {
+    const invoiceList = document.getElementById('invoice-list');
+    invoiceList.innerHTML = ''; // Clear existing invoices
 
+    const invoices = await fetchInvoices(); // Get invoices from backend
+
+    invoices.forEach((invoice) => {
+        const li = document.createElement('li');
+        li.textContent = `${invoice.description} - Rp ${invoice.amount}`;
+        invoiceList.appendChild(li);
+    });
+}
+
+// Function to display expenses on the page
+async function displayExpenses() {
+    const expenseList = document.getElementById('expense-list');
+    expenseList.innerHTML = ''; // Clear existing expenses
+
+    const expenses = await fetchExpenses(); // Get expenses from backend
+
+    expenses.forEach((expense) => {
+        const li = document.createElement('li');
+        li.textContent = `${expense.description} - Rp ${expense.amount}`;
+        expenseList.appendChild(li);
+    });
+}
+
+// Call functions to display data when the page loads
+window.onload = function () {
+    displayInvoices();
+    displayExpenses();
+};

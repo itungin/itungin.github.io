@@ -1,38 +1,44 @@
-// Import JSCroot from the CDN
-import JSCroot from 'https://cdn.jsdelivr.net/gh/jscroot/lib@0.0.1/api.js';
-
-// Async function to submit the expense form
+// Function to handle the form submission for adding expenses
 async function submitExpense(event) {
-    event.preventDefault();
+    event.preventDefault(); // Prevent default form submission
 
+    // Prepare expense data from form inputs
     const expenseData = {
-        expense_name: document.getElementById('expense_name').value,
-        amount: parseFloat(document.getElementById('amount').value),
-        category: document.getElementById('category').value,
+        expense_name: document.getElementById('expense_name').value.trim(),
+        amount: parseFloat(document.getElementById('amount').value) || 0,
+        category: document.getElementById('category').value.trim(),
         expense_date: new Date(document.getElementById('expense_date').value).toISOString(),
         payment_method: document.getElementById('payment_method') ? document.getElementById('payment_method').value : "",
         notes: document.getElementById('notes') ? document.getElementById('notes').value : ""
     };
 
+    // Basic validation for required fields
+    if (!expenseData.expense_name || !expenseData.amount || !expenseData.category || !expenseData.expense_date) {
+        alert('Please complete all required fields.');
+        return;
+    }
+
     try {
-        // Using JSCroot for fetch request
-        const response = await JSCroot.post('http://localhost:8081/expense', expenseData, {
+        const response = await fetch('https://asia-southeast2-awangga.cloudfunctions.net/itungin/expense', {
+            method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
-            }
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(expenseData),
         });
 
-        if (response && response.status === 200) {
-            alert('Pengeluaran berhasil ditambahkan!');
-            window.location.href = 'Business.html'; // Redirect to main page
+        if (response.ok) {
+            alert('Expense added successfully!');
+            window.location.href = 'Business.html'; // Redirect to the main page
         } else {
             const errorData = await response.json();
-            alert(`Gagal menambahkan pengeluaran: ${errorData.message}`);
+            alert(`Failed to add expense: ${errorData.message}`);
         }
     } catch (error) {
-        alert(`Terjadi kesalahan: ${error.message}`);
+        alert(`An error occurred: ${error.message}`);
+        console.error('Error details:', error); // Log error details for debugging
     }
 }
 
-// Event listener to handle form submission
-document.getElementById('expenseForm').addEventListener('submit', submitExpense);
+// Add event listener to submit button
+document.getElementById('submit-expense-btn').addEventListener('click', submitExpense);

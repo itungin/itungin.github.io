@@ -1,44 +1,39 @@
-import JSCroot from 'https://cdn.jsdelivr.net/gh/jscroot/lib@0.0.1/api.js';
+// Import the JSCroot library (assuming you are using it as an ES module)
+import * as JSCroot from 'https://cdn.jsdelivr.net/gh/jscroot/lib@0.0.1/api.js';
 
-// Event listener untuk form submit
+// Event listener for form submit
 document.getElementById('loginForm').addEventListener('submit', async function (e) {
-    e.preventDefault(); // Mencegah submit form secara default
+    e.preventDefault(); // Prevent form from submitting the default way
 
-    // Mengambil nilai dari form
+    // Get form values
     const name = document.getElementById('name').value;
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
     const umkmName = document.getElementById('umkm_name').value;
 
+    // Create an object to send to the backend
+    const data = {
+        name: name,
+        email: email,
+        password: password,
+        umkm_name: umkmName
+    };
+
     try {
-        // Enkripsi data sebelum dikirim
-        const encryptedName = await JSCroot.encryptData(name);
-        const encryptedEmail = await JSCroot.encryptData(email);
-        const encryptedPassword = await JSCroot.encryptData(password);
-        const encryptedUmkmName = await JSCroot.encryptData(umkmName);
-
-        // Membuat object untuk dikirim ke backend dengan data terenkripsi
-        const data = {
-            name: encryptedName,
-            email: encryptedEmail,
-            password: encryptedPassword,
-            umkm_name: encryptedUmkmName
-        };
-
-        const response = await fetch('http://localhost:8081/register', {
-            method: 'POST',
+        // Replace fetch with JSCroot's post request function
+        const response = await JSCroot.post('http://localhost:8081/register', {
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(data)
         });
 
-        // Mengecek response dari server
+        // Check server response
         if (response.ok) {
             const result = await response.json();
             alert('Registration successful!');
             console.log(result);
-            // Redirect atau lakukan sesuatu setelah berhasil
+            // Redirect or do something after success
         } else {
             const error = await response.json();
             alert('Registration failed: ' + error.message);
@@ -50,8 +45,8 @@ document.getElementById('loginForm').addEventListener('submit', async function (
     }
 });
 
-// Event listener untuk tombol "Back to main menu"
+// Event listener for "Back to main menu" button
 document.getElementById('back-btn').addEventListener('click', function (e) {
-    e.preventDefault(); // Mencegah default button behavior
-    window.location.href = 'LP.html'; // Redirect ke halaman LP.html
+    e.preventDefault(); // Prevent default button behavior
+    window.location.href = 'LP.html'; // Redirect to LP.html
 });

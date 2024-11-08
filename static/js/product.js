@@ -1,4 +1,8 @@
 // Import JSCroot from the CDN
+import Swal from "https://cdn.jsdelivr.net/npm/sweetalert2@11/src/sweetalert2.js";
+import {addCSS} from "https://cdn.jsdelivr.net/gh/jscroot/lib@0.0.9/element.js";
+
+addCSS("https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.css");
 
 
 // Function to format numbers as Rupiah
@@ -152,12 +156,21 @@ function formatRupiah(number) {
   // Function to edit a product
   function editProduct(productId) {
     // Redirect to edit page, passing the product ID as a query parameter
-    window.location.href = `EditProduct.html?id=${productId}`;
+    window.location.href = `Editproduct.html?id=${productId}`;
   }
   
   // Function to delete a product
   async function deleteProduct(productId) {
-    if (confirm("Are you sure you want to delete this product?")) {
+    const result = await Swal.fire({
+      icon: "question",
+      title: "Are you sure you want to delete this data?",
+      text: "DELETE",
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'No, cancel',
+    });
+  
+    if (result.isConfirmed) {
       try {
         const response = await fetch(
           `https://asia-southeast2-awangga.cloudfunctions.net/itungin/products?id=${productId}`,
@@ -167,16 +180,30 @@ function formatRupiah(number) {
         );
   
         if (response.ok) {
-          alert("Product deleted successfully!");
+          Swal.fire({
+            icon: "success",
+            title: "Deleted",
+            text: "Terhapus",
+          });
           fetchProducts(); // Reload the product list after deletion
         } else {
-          alert("Failed to delete the product.");
+          Swal.fire({
+            icon: "error",
+            title: "Failed",
+            text: "Failed to delete the product.",
+          });
         }
       } catch (error) {
         console.error("Error deleting product:", error);
+        Swal.fire({
+          icon: "error",
+          title: "Error",
+          text: "An error occurred while deleting the product.",
+        });
       }
     }
   }
+  
   
   // Search Functionality
   function searchProducts() {

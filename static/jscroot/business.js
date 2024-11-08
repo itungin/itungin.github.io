@@ -1,6 +1,7 @@
-import JSCroot from 'https://cdn.jsdelivr.net/gh/jscroot/lib@0.0.1/api.js';
+// Import the JSCroot library
+import * as JSCroot from 'https://cdn.jsdelivr.net/gh/jscroot/lib@0.0.1/api.js';
 
-let currentTable = 'salesTable'; // Default ke tabel sales
+let currentTable = 'salesTable'; // Default to sales table
 
 function showSales() {
     document.getElementById('salesTable').classList.remove('hidden');
@@ -17,84 +18,68 @@ function showExpenses() {
 }
 
 async function fetchSalesData() {
-    const response = await fetch('http://localhost:8081/transaksi');
-    let salesData = await response.json();
+    try {
+        const response = await JSCroot.get('https://asia-southeast2-awangga.cloudfunctions.net/itungin/sales');
+        const salesData = await response.json();
+        const salesTableBody = document.getElementById('salesTableBody');
+        salesTableBody.innerHTML = '';
 
-    // Contoh dekripsi data, jika tersedia fungsi decryptData di JSCroot
-    salesData = await Promise.all(salesData.map(async sale => {
-        sale.customer_name = await JSCroot.decryptData(sale.customer_name);  // Menggunakan dekripsi, jika perlu
-        sale.products = await Promise.all(sale.products.map(async product => {
-            product.name = await JSCroot.decryptData(product.name);
-            return product;
-        }));
-        return sale;
-    }));
-
-    const salesTableBody = document.getElementById('salesTableBody');
-    salesTableBody.innerHTML = '';
-
-    salesData.forEach(sale => {
-        const productNames = sale.products.map(product => product.name).join(', ');
-        const row = `<tr>
-            <td>${new Date(sale.transactionDate).toLocaleDateString()}</td>
-            <td>${sale.customer_name}</td>
-            <td>${productNames}</td>
-            <td>${sale.total_amount}</td>
-            <td>${sale.payment_method}</td>
-        </tr>`;
-        salesTableBody.innerHTML += row;
-    });
+        salesData.forEach(sale => {
+            const productNames = sale.products.map(product => product.name).join(', ');
+            const row = `<tr>
+                <td>${new Date(sale.transactionDate).toLocaleDateString()}</td>
+                <td>${sale.customer_name}</td>
+                <td>${productNames}</td>
+                <td>${sale.total_amount}</td>
+                <td>${sale.payment_method}</td>
+            </tr>`;
+            salesTableBody.innerHTML += row;
+        });
+    } catch (error) {
+        console.error("Error fetching sales data:", error);
+    }
 }
 
 async function fetchExpensesData() {
-    const response = await fetch('http://localhost:8081/expense');
-    let expensesData = await response.json();
+    try {
+        const response = await JSCroot.get('https://asia-southeast2-awangga.cloudfunctions.net/itungin/expenses');
+        const expensesData = await response.json();
+        const expensesTableBody = document.getElementById('expensesTableBody');
+        expensesTableBody.innerHTML = '';
 
-    // Dekripsi nama pengeluaran
-    expensesData = await Promise.all(expensesData.map(async expense => {
-        expense.expense_name = await JSCroot.decryptData(expense.expense_name);
-        return expense;
-    }));
-
-    const expensesTableBody = document.getElementById('expensesTableBody');
-    expensesTableBody.innerHTML = '';
-
-    expensesData.forEach(expense => {
-        const row = `<tr>
-            <td>${new Date(expense.expense_date).toLocaleDateString()}</td>
-            <td>${expense.expense_name}</td>
-            <td>${expense.amount}</td>
-            <td>${expense.category}</td>
-        </tr>`;
-        expensesTableBody.innerHTML += row;
-    });
+        expensesData.forEach(expense => {
+            const row = `<tr>
+                <td>${new Date(expense.expense_date).toLocaleDateString()}</td>
+                <td>${expense.expense_name}</td>
+                <td>${expense.amount}</td>
+                <td>${expense.category}</td>
+            </tr>`;
+            expensesTableBody.innerHTML += row;
+        });
+    } catch (error) {
+        console.error("Error fetching expenses data:", error);
+    }
 }
 
 async function fetchCustomers() {
-    const response = await fetch('http://localhost:8081/customers');
-    let customersData = await response.json();
+    try {
+        const response = await JSCroot.get('https://asia-southeast2-awangga.cloudfunctions.net/itungin/customers');
+        const customersData = await response.json();
+        const customersTableBody = document.getElementById('customersTableBody');
+        customersTableBody.innerHTML = '';
 
-    // Dekripsi data pelanggan jika diperlukan
-    customersData = await Promise.all(customersData.map(async customer => {
-        customer.name = await JSCroot.decryptData(customer.name);
-        customer.email = await JSCroot.decryptData(customer.email);
-        customer.phone = await JSCroot.decryptData(customer.phone);
-        customer.address = await JSCroot.decryptData(customer.address);
-        return customer;
-    }));
-
-    const customersTableBody = document.getElementById('customersTableBody');
-    customersTableBody.innerHTML = '';
-
-    customersData.forEach(customer => {
-        const row = `<tr>
-            <td>${customer.name}</td>
-            <td>${customer.email}</td>
-            <td>${customer.phone}</td>
-            <td>${customer.address}</td>
-        </tr>`;
-        customersTableBody.innerHTML += row;
-    });
+        customersData.forEach(customer => {
+            const row = `<tr>
+                <td>${customer.name}</td>
+                <td>${customer.email}</td>
+                <td>${customer.phone}</td>
+                <td>${customer.address}</td>
+            </tr>`;
+            customersTableBody.innerHTML += row;
+        });
+    } catch (error) {
+        console.error("Error fetching customers data:", error);
+    }
 }
 
 function exportCurrentTableToCSV() {
@@ -119,6 +104,7 @@ function exportToCSV(tableId, filename) {
     URL.revokeObjectURL(url);
 }
 
-// Fetch initial data
+// Fetch initial data and display tables
 showSales();
+showExpenses();
 fetchCustomers();
