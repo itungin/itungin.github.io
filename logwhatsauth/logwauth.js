@@ -7,7 +7,7 @@ import {
   wauthparam.auth_ws = "d3NzOi8vYXBpLndhLm15LmlkL3dzL3doYXRzYXV0aC9wdWJsaWM=";
   wauthparam.keyword = "  aHR0cHM6Ly93YS5tZS82Mjg1MTU3OTc5NzU5P3RleHQ9d2g0dDVhdXRoMA==";
   wauthparam.tokencookiehourslifetime = 18;
-  wauthparam.redirect = "/auth";
+  wauthparam.redirect = "https://itung.in.my.id/dashboard/";
   deleteCookie(wauthparam.tokencookiename);
   qrController(wauthparam);
   
