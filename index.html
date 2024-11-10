@@ -5,46 +5,49 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Landing Page POS</title>
   <link rel="stylesheet" href="/static/css/landingp.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
+
 <body>
   <!-- Header -->
   <header>
     <div class="logo">LOGO POS</div>
     <nav>
       <a href="#fitur">Fitur</a>
-      <a href="#cara-kerja">Cara Kerja</a>
       <a href="#testimoni">Testimoni</a>
       <a href="#hubungi">Hubungi Kami</a>
-      <button class="cta"><a href="login.html">Login</a></button>
+      <a href="Dashboard_blank.html">Coba Dashboard</a>
     </nav>
+    <div>
+      <button class="cta-login" onclick="window.location.href='login.html'">Login</button>
+      <span class="menu-btn" onclick="toggleSidebar()"><i class="fas fa-bars"></i></span>
+    </div>
   </header>
 
-  <!-- Hero Section -->
+  <!-- Sidebar untuk Mobile -->
+  <div class="sidebar" id="sidebar">
+    <span class="close-btn" onclick="toggleSidebar()">&times;</span>
+    <a href="#fitur" onclick="toggleSidebar()">Fitur</a>
+    <a href="#testimoni" onclick="toggleSidebar()">Testimoni</a>
+    <a href="#hubungi" onclick="toggleSidebar()">Hubungi Kami</a>
+    <a href="Dashboard_blank.html" onclick="toggleSidebar()">Coba Dashboard</a>
+  </div>
+
+  <!-- Hero Section with Parallax Effect -->
   <section class="hero">
     <h1>Kelola Transaksi Anda dengan Mudah dan Cepat</h1>
     <p>Website POS modern untuk bisnis Anda, memudahkan pengelolaan transaksi harian secara efisien dan aman.</p>
-    <button class="cta"><a href="Register.html">Daftar Sekarang</a></button>
+    <button class="cta"><a href="register.html">Daftar Sekarang</a></button>
   </section>
 
   <!-- Fitur Utama -->
   <section id="fitur">
     <h2>Fitur Unggulan</h2>
     <div class="fitur-item">
-      <i class="icon"></i>
+      <i class="fas fa-check-circle"></i>
       <h3>Kemudahan Penggunaan</h3>
       <p>POS yang user-friendly dan intuitif.</p>
     </div>
-    <!-- Tambahkan fitur lainnya -->
-  </section>
-
-  <!-- Cara Kerja -->
-  <section id="cara-kerja">
-    <h2>Cara Kerja</h2>
-    <ol>
-      <li>Daftar & Login</li>
-      <li>Input Data Barang & Stok</li>
-      <li>Mulai Transaksi</li>
-    </ol>
   </section>
 
   <!-- Testimoni -->
@@ -52,17 +55,6 @@
     <h2>Apa Kata Pengguna Kami</h2>
     <blockquote>"POS ini sangat membantu bisnis saya."</blockquote>
     <p>- Nama Pelanggan, Bisnis</p>
-  </section>
-
-  <!-- Harga -->
-  <section id="harga">
-    <h2>Paket Harga</h2>
-    <div class="paket">
-      <h3>Basic</h3>
-      <p>Mulai dari RpX/bulan</p>
-      <button>Pilih Paket</button>
-    </div>
-    <!-- Tambahkan paket lainnya -->
   </section>
 
   <!-- Hubungi Kami -->
@@ -80,5 +72,13 @@
   <footer>
     <p>© POS Anda 2024. Semua Hak Dilindungi.</p>
   </footer>
+
+  <!-- Script untuk Toggle Sidebar -->
+  <script>
+    function toggleSidebar() {
+      const sidebar = document.getElementById("sidebar");
+      sidebar.style.display = sidebar.style.display === "flex" ? "none" : "flex";
+    }
+  </script>
 </body>
 </html>
