@@ -296,7 +296,7 @@ form button:hover {
 }
 
 /* Footer */
-footer {
+/* footer {
   padding: 1rem;
   text-align: center;
   background-color: #333;
@@ -306,7 +306,7 @@ footer {
 
 footer p {
   margin: 0;
-}
+} */
 /* scroll bar */
 /* Custom Scrollbar Styles */
 ::-webkit-scrollbar {
