@@ -24,10 +24,12 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
-  background: linear-gradient(135deg, #4f8ef7, #1d72d4);
+  background: rgba(33, 150, 243, 0.7);
   color: white;
- 
-
+  transition: background 0.3s ease;
+}
+header.scrolled {
+  background: rgba(33, 150, 243, 1);
 }
 
 header .logo {
@@ -70,7 +72,9 @@ nav .cta, .cta-login {
 
 nav a, .cta-login {
   color: white;
-  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  transition: all 0.3s;
 }
 
 .cta-login {
@@ -88,7 +92,9 @@ nav a, .cta-login {
 .cta-login:hover{
   background: #2b81de;
 }
-
+nav a:hover, .cta-login:hover {
+  background: #3a9bfb;
+}
 /* Tombol Menu Garis Tiga */
 .menu-btn {
   display: none;
@@ -100,24 +106,8 @@ nav .cta:hover {
   background-color: #0056b3;
 }
 
-@media (max-width: 768px) {
-  nav {
-    display: none;
-  }
-  .menu-btn {
-    display: inline-block;
-    font-size: 1.5em;
-    cursor: pointer;
-  }
-  .menu-btn, .cta-login {
-    display: inline-block;
-  }
-  .cta-login {
-    margin-right: 10px;
-  }
-}
 
-/* Sidebar */
+
 /* Sidebar */
 .sidebar {
   display: none;
@@ -154,12 +144,15 @@ nav .cta:hover {
 /* Hero Section */
 .hero {
   background-image: url('/static/images/hero-bg.jpg');
-  background-attachment: fixed;
-  background-size: cover;
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   color: white;
   text-align: center;
-  padding: 100px 20px;
-  padding: 3rem 2rem;
+  background-attachment: fixed;
+  background-size: cover;
   background-blend-mode: overlay;
   background-color: rgba(33, 150, 243, 0.7);
 }
@@ -222,13 +215,25 @@ section h2 {
 }
 
 /* Fitur */
+#fitur {
+  padding: 2rem 0;
+  background-color: #f8f9fa;
+  text-align: center;
+}
+
+.fitur-container {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
 .fitur-item {
-  display: inline-block;
-  width: 65%;
+  flex: 1 1 30%;
+  text-align: center;
   padding: 1rem;
-  margin: 1rem;
   border: 1px solid #ddd;
-  border-radius: 5px;
+  border-radius: 8px;
 }
 
 .fitur-item h3 {
@@ -253,6 +258,18 @@ section h2 {
 #testimoni p {
   font-size: 1rem;
   color: #555;
+}
+.testimonial-container {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+.testimonial-card {
+  flex: 1 1 45%;
+  padding: 1rem;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 /* Harga */
@@ -322,4 +339,33 @@ footer {
 
 footer p {
   margin: 0;
+}
+
+/* Responsif */
+@media (max-width: 768px) {
+  nav {
+    display: none;
+  }
+
+  .menu-btn {
+    display: inline-block;
+    font-size: 1.5em;
+    cursor: pointer;
+  }
+  .menu-btn, .cta-login {
+    display: inline-block;
+  }
+
+  .fitur-container, .testimonial-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .fitur-item, .testimonial-card {
+    flex: 1 1 100%;
+    max-width: 90%;
+  }
+  .cta-login {
+    margin-right: 10px;
+  }
 }
