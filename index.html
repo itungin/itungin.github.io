@@ -10,7 +10,7 @@
 
 <body>
   <!-- Header -->
-  <header>
+  <header id="main-header">
     <div class="logo">LOGO POS</div>
     <nav>
       <a href="#fitur">Fitur</a>
@@ -24,7 +24,7 @@
     </div>
   </header>
 
-  <!-- Sidebar untuk Mobile -->
+  <!-- Sidebar for Mobile -->
   <div class="sidebar" id="sidebar">
     <span class="close-btn" onclick="toggleSidebar()">&times;</span>
     <a href="#fitur" onclick="toggleSidebar()">Fitur</a>
@@ -33,28 +33,48 @@
     <a href="Dashboard_blank.html" onclick="toggleSidebar()">Coba Dashboard</a>
   </div>
 
-  <!-- Hero Section with Parallax Effect -->
+  <!-- Hero Section -->
   <section class="hero">
     <h1>Kelola Transaksi Anda dengan Mudah dan Cepat</h1>
     <p>Website POS modern untuk bisnis Anda, memudahkan pengelolaan transaksi harian secara efisien dan aman.</p>
     <button class="cta"><a href="Register.html">Daftar Sekarang</a></button>
   </section>
 
-  <!-- Fitur Utama -->
+  <!-- Fitur Unggulan -->
   <section id="fitur">
     <h2>Fitur Unggulan</h2>
-    <div class="fitur-item">
-      <i class="fas fa-check-circle"></i>
-      <h3>Kemudahan Penggunaan</h3>
-      <p>POS yang user-friendly dan intuitif.</p>
+    <div class="fitur-container">
+      <div class="fitur-item">
+        <i class="fas fa-check-circle"></i>
+        <h3>Kemudahan Penggunaan</h3>
+        <p>POS yang user-friendly dan intuitif.</p>
+      </div>
+      <div class="fitur-item">
+        <i class="fas fa-lock"></i>
+        <h3>Keamanan Data</h3>
+        <p>Data Anda aman dengan enkripsi tingkat tinggi.</p>
+      </div>
+      <div class="fitur-item">
+        <i class="fas fa-chart-line"></i>
+        <h3>Analisis Bisnis</h3>
+        <p>Fitur analitik untuk membantu keputusan bisnis.</p>
+      </div>
     </div>
   </section>
 
   <!-- Testimoni -->
   <section id="testimoni">
     <h2>Apa Kata Pengguna Kami</h2>
-    <blockquote>"POS ini sangat membantu bisnis saya."</blockquote>
-    <p>- Nama Pelanggan, Bisnis</p>
+    <div class="testimonial-container">
+      <div class="testimonial-card">
+        <blockquote>"POS ini sangat membantu bisnis saya."</blockquote>
+        <p>- Nama Pelanggan, Bisnis</p>
+      </div>
+      <div class="testimonial-card">
+        <blockquote>"Sistem yang efisien dan mudah digunakan!"</blockquote>
+        <p>- Nama Pelanggan Lain, Usaha</p>
+      </div>
+    </div>
   </section>
 
   <!-- Hubungi Kami -->
@@ -73,12 +93,21 @@
     <p>© POS Anda 2024. Semua Hak Dilindungi.</p>
   </footer>
 
-  <!-- Script untuk Toggle Sidebar -->
+  <!-- Script untuk Toggle Sidebar dan Scroll Effect -->
   <script>
     function toggleSidebar() {
       const sidebar = document.getElementById("sidebar");
       sidebar.style.display = sidebar.style.display === "flex" ? "none" : "flex";
     }
+    
+    window.onscroll = function() {
+      const header = document.getElementById("main-header");
+      if (window.scrollY > 50) {
+        header.classList.add("scrolled");
+      } else {
+        header.classList.remove("scrolled");
+      }
+    };
   </script>
 </body>
 </html>
