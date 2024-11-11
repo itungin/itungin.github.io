@@ -81,15 +81,34 @@
   </section>
 
   <!-- Hubungi Kami -->
-  <section id="hubungi">
-    <h2>Hubungi Kami</h2>
-    <form>
-      <input type="text" placeholder="Nama" required>
-      <input type="email" placeholder="Email" required>
-      <textarea placeholder="Pesan" required></textarea>
-      <button>Kirim</button>
-    </form>
+  <section id="hubungi" class="d-flex justify-content-center align-items-center py-5">
+    <div class="col-xl-6 col-lg-8 col-md-10 col-12">
+      <h2 class="pb-4 text-center">Hubungi Kami</h2>
+      
+      <!-- Form Input -->
+      <div class="mb-3">
+        <input type="text" class="form-control" id="name" placeholder="Nama">
+      </div>
+      
+      <div class="mb-3">
+        <input type="email" class="form-control" id="email" placeholder="Email@example.com">
+      </div>
+      
+      <div class="mb-3">
+        <input type="tel" class="form-control" id="phone" placeholder="No. Telepon">
+      </div>
+      
+      <div class="mb-3">
+        <textarea class="form-control" id="message" rows="3" placeholder="Your message..."></textarea>
+      </div>
+  
+      <!-- Button Send di pojok kanan -->
+      <div class="text-end">
+        <button type="button" class="btn btn-outline-primary">Send Message</button>
+      </div>
+    </div>
   </section>
+  
 
   <!-- Footer -->
   <footer id="site-footer">
