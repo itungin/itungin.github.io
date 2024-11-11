@@ -1,4 +1,7 @@
 /* Reset */
+html{ 
+  scroll-behavior: smooth;
+}
 * {
   margin: 0;
   padding: 0;
@@ -226,6 +229,7 @@ section h2 {
   justify-content: center;
   gap: 2rem;
   flex-wrap: wrap;
+  padding: 0 4rem 0 4rem;
 }
 
 .fitur-item {
@@ -241,12 +245,7 @@ section h2 {
   margin-top: 0.5rem;
 }
 
-/* Cara Kerja */
-#cara-kerja ol {
-  list-style: decimal;
-  padding-left: 1.5rem;
-  text-align: left;
-}
+
 
 /* Testimoni */
 #testimoni blockquote {
@@ -263,50 +262,18 @@ section h2 {
   display: flex;
   gap: 2rem;
   flex-wrap: wrap;
+  padding: 0 4rem 0 4rem;
+
 }
 .testimonial-card {
-  flex: 1 1 45%;
+  flex: 1 1 30%;
   padding: 1rem;
   border-radius: 8px;
   background-color: #fff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Harga */
-.paket {
-  display: inline-block;
-  width: 30%;
-  padding: 1rem;
-  margin: 1rem;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  background-color: #ffffff;
-}
 
-.paket h3 {
-  font-size: 1.5rem;
-  color: #333;
-  margin-bottom: 0.5rem;
-}
-
-.paket p {
-  font-size: 1.25rem;
-  color: #007bff;
-  margin: 0.5rem 0;
-}
-
-.paket button {
-  background-color: #007bff;
-  color: #fff;
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
-  border: none;
-  cursor: pointer;
-}
-
-.paket button:hover {
-  background-color: #0056b3;
-}
 
 /* Form Kontak */
 form input, form textarea, form button {
@@ -343,6 +310,9 @@ footer p {
 
 /* Responsif */
 @media (max-width: 768px) {
+  html{
+    scroll-behavior: smooth;
+  }
   nav {
     display: none;
   }
@@ -359,11 +329,18 @@ footer p {
   .fitur-container, .testimonial-container {
     flex-direction: column;
     align-items: center;
+    padding: none;
+    
+  }
+
+  .fitur-item{
+    width: 80%;
   }
 
   .fitur-item, .testimonial-card {
     flex: 1 1 100%;
     max-width: 90%;
+    padding: none;
   }
   .cta-login {
     margin-right: 10px;
