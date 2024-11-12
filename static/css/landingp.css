@@ -41,12 +41,17 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
-  background: #2196f3b3;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+  background: rgba(33, 150, 243, 0.4); /* Navbar Transparan */
+  backdrop-filter: blur(10px); /* Efek blur di belakang navbar */
   color: white;
   transition: background 0.3s ease;
 }
 header.scrolled {
-  background: #2196f3;
+  background: rgba(33, 150, 243, 0.8); /* Lebih solid saat di-scroll */
 }
 
 header .logo {
@@ -60,82 +65,40 @@ nav {
   align-items: center;
 }
 
-nav a, .cta, .cta-login {
-  color: white;
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
-  transition: all 0.3s;
-}
-nav a:hover, .cta-login:hover {
-  background: #3a9bfb;
-  box-shadow: 0px 4px 12px rgba(64, 159, 254, 0.4);
-}
-  
-nav .cta {
-  background-color: #007bff;
-    color: #fff;
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
-  border: none;
-}
-nav .cta, .cta-login {
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
-  background-color: #007bff;
-  border: none;
-  cursor: pointer;
-  text-decoration: none;
-}
-
-
-nav a, .cta-login {
+nav a {
   color: white;
   padding: 0.5rem 1rem;
   border-radius: 5px;
   transition: all 0.3s;
   text-decoration: none;
 }
+nav a:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
 
-.cta-login {
+/* Tombol Login */
+.btn {
   padding: 8px 16px;
-  background: #0067d6;
-  border-radius: 4px;
-  margin-left: 1rem;
-}
-.cta, .cta-login {
-  background-color: #feffff;
-}
-.cta:hover {
-  background-color: #0056b3;
-}
-.cta-login:hover{
-  background: #ffffff;
-}
-nav a:hover, .cta-login:hover {
-  background: #3a9bfb;
-}
-/* Tombol Menu Garis Tiga */
-.menu-btn {
-  display: none;
-  font-size: 1.5em;
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid white;
+  border-radius: 5px;
+  color: white;
   cursor: pointer;
+  transition: all 0.3s;
 }
-
-nav .cta:hover {
-  background-color: #0056b3;
+.btn:hover {
+  background: rgba(255, 255, 255, 0.4);
 }
-
-
 
 /* Sidebar */
 .sidebar {
-  display: none;
+  display: none; /* Sidebar tersembunyi secara default */
   position: fixed;
   top: 0;
-  right: 0; /* Mengubah ke kanan */
+  right: 0;
   height: 100%;
   width: 250px;
-  background: #333;
+  background: rgba(51, 51, 51, 0.9);
   padding: 20px;
   z-index: 10;
   transition: all 0.3s ease;
@@ -152,13 +115,47 @@ nav .cta:hover {
   color: #3a9bfb;
 }
 
-/* Tombol tutup sidebar di dalam sidebar */
+/* Tombol tutup sidebar */
 .sidebar .close-btn {
   font-size: 1.5em;
   color: white;
   cursor: pointer;
   margin-bottom: 20px;
 }
+
+/* Tampilan sidebar hanya di perangkat mobile */
+@media (max-width: 768px) {
+  .sidebar {
+    display: flex; /* Sidebar ditampilkan di perangkat dengan lebar layar 768px atau lebih kecil */
+  }
+
+  /* Navbar menu toggle button hanya terlihat di mobile */
+  .menu-btn {
+    display: block;
+    font-size: 1.5em;
+    cursor: pointer;
+  }
+
+  nav {
+    display: none; /* Menyembunyikan menu navbar pada perangkat mobile */
+  }
+}
+
+/* Sidebar untuk perangkat desktop */
+@media (min-width: 769px) {
+  .sidebar {
+    display: none; /* Menyembunyikan sidebar pada perangkat desktop */
+  }
+
+  nav {
+    display: flex; /* Menampilkan menu navbar pada perangkat desktop */
+  }
+
+  .menu-btn {
+    display: none; /* Menyembunyikan tombol menu pada perangkat desktop */
+  }
+}
+
 
 /* Hero Section */
 .hero {
@@ -172,21 +169,38 @@ nav .cta:hover {
   text-align: center;
   background-attachment: fixed;
   background-size: cover;
-  background-blend-mode: overlay;
+  background-position: center;
+  position: relative;
 }
 
 .hero h1 {
-  font-size: 2.5rem;
+  font-size: 3rem;
   animation: fadeInDown 2s;
-  color: #ffffff;
+  margin-bottom: 1rem;
 }
 
 .hero p {
   font-size: 1.25rem;
   animation: fadeInUp 2s;
-  margin: 1rem 0;
+  margin-bottom: 2rem;
   color: #f3f3f3;
 }
+
+.hero a {
+  padding: 10px 20px;
+  border: 1px solid white;
+  border-radius: 5px;
+  color: white;
+  text-decoration: none;
+  transition: background 0.3s ease;
+}
+.hero a:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Efek Scroll */
+/* JavaScript code moved to a separate file */
+
 
 /* .hero .cta {
   background-color: #ffffff;
