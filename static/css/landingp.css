@@ -78,6 +78,7 @@ nav a, .cta-login {
   padding: 0.5rem 1rem;
   border-radius: 5px;
   transition: all 0.3s;
+  text-decoration: none;
 }
 
 .cta-login {
