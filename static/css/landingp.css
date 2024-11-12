@@ -21,6 +21,11 @@ a {
   color: inherit;
 }
 
+h5 {
+color: #ffffff;
+}
+
+
 /* Header */
 header {
   display: flex;
@@ -70,6 +75,7 @@ nav .cta, .cta-login {
   background-color: #007bff;
   border: none;
   cursor: pointer;
+  text-decoration: none;
 }
 
 
