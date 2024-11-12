@@ -103,13 +103,13 @@ nav a, .cta-login {
   margin-left: 1rem;
 }
 .cta, .cta-login {
-  background-color: #007bff;
+  background-color: #feffff;
 }
 .cta:hover {
   background-color: #0056b3;
 }
 .cta-login:hover{
-  background: #2b81de;
+  background: #ffffff;
 }
 nav a:hover, .cta-login:hover {
   background: #3a9bfb;
@@ -162,7 +162,7 @@ nav .cta:hover {
 
 /* Hero Section */
 .hero {
-  background-image: url('/static/images/hero-bg.jpg');
+  background-image: url('/static/img/image.png');
   height: 90vh;
   display: flex;
   flex-direction: column;
@@ -173,7 +173,6 @@ nav .cta:hover {
   background-attachment: fixed;
   background-size: cover;
   background-blend-mode: overlay;
-  background-color: rgba(33, 150, 243, 0.7);
 }
 
 .hero h1 {
@@ -189,8 +188,8 @@ nav .cta:hover {
   color: #f3f3f3;
 }
 
-.hero .cta {
-  background-color: #007bff;
+/* .hero .cta {
+  background-color: #ffffff;
   color: #fff;
   padding: 0.75rem 2rem;
   border-radius: 5px;
@@ -201,9 +200,9 @@ nav .cta:hover {
 }
 
 .hero .cta:hover {
-  background-color: #0056b3;
+  background-color: #3a9bfb;
   transform: scale(1.05);
-}
+} */
 
 @keyframes fadeInDown {
   from { opacity: 0; transform: translateY(-50px); }
