@@ -45,5 +45,5 @@ document.getElementById('loginForm').addEventListener('submit', async function (
 // Event listener untuk tombol "Back to main menu"
 document.getElementById('back-btn').addEventListener('click', function (e) {
     e.preventDefault(); // Mencegah default button behavior
-    window.location.href = 'LP.html'; // Redirect ke halaman LP.html
+    window.location.href = 'index.html'; // Redirect ke halaman LP.html
 });
