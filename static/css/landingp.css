@@ -22,17 +22,17 @@ a {
 }
 
 h5 {
-color: #ffffff;
+color: #F8F9FA;
 }
 
 li {
-  color: #ffffff;
+  color: #F8F9FA;
 }
 li a{
-  color: #ffffff;
+  color: #F8F9FA;
 }
 span {
-  color: #ffffff;
+  color: #F8F9FA;
 }
 
 /* Header */
@@ -74,6 +74,7 @@ nav a {
 }
 nav a:hover {
   background: rgba(255, 255, 255, 0.2);
+  color: #F8F9FA;
 }
 
 /* Tombol Login */
@@ -203,7 +204,7 @@ nav a:hover {
 
 
 /* .hero .cta {
-  background-color: #ffffff;
+  background-color: #F8F9FA;
   color: #fff;
   padding: 0.75rem 2rem;
   border-radius: 5px;
@@ -264,7 +265,7 @@ section h2 {
 /* Kartu Fitur */
 .fitur-item {
   flex: 1 1 300px;
-  background-color: #ffffff;
+  background-color: #F8F9FA;
   text-align: center;
   padding: 2rem;
   border-radius: 12px;
@@ -328,7 +329,7 @@ section h2 {
 
 /* Kartu Testimoni */
 .testimonial-card {
-  background-color: #ffffff;
+  background-color: #F8F9FA;
   padding: 2rem;
   border-radius: 16px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
