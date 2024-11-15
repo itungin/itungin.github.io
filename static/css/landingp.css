@@ -331,6 +331,13 @@ section h2 {
   padding: 0 2rem;
 }
 
+/* Tampilkan 2 kolom di layar besar */
+@media (min-width: 768px) {
+  .testimonial-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 /* Kartu Testimoni */
 .testimonial-card {
   background-color: #F8F9FA;
@@ -382,6 +389,7 @@ section h2 {
   font-weight: bold;
   margin-top: auto;
 }
+
 
 
 
