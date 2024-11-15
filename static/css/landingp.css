@@ -394,25 +394,69 @@ section h2 {
 
 
 
-/* Form Kontak */
-form input, form textarea, form button {
-  width: 100%;
-  padding: 0.5rem;
-  margin: 0.5rem 0;
-  border: 1px solid #ddd;
-  border-radius: 5px;
+/* Section Kontak */
+#hubungi {
+  background-color: #f8f9fa;
 }
 
+.container {
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Styling Formulir */
+form input,
+form textarea {
+  border: 1px solid #ced4da;
+  border-radius: 10px;
+  padding: 1rem;
+  transition: all 0.3s ease-in-out;
+  font-size: 1rem;
+}
+
+form input:focus,
+form textarea:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.2);
+  outline: none;
+}
+
+/* Tombol Kirim */
 form button {
+  border-radius: 8px;
   background-color: #007bff;
   color: #fff;
   border: none;
-  cursor: pointer;
+  padding: 0.75rem 2rem;
+  transition: all 0.3s ease;
 }
 
 form button:hover {
   background-color: #0056b3;
+  transform: translateY(-3px);
 }
+
+/* Responsive Image */
+.h-100 {
+  height: 100%;
+  border-radius: 0;
+}
+
+/* Mobile Responsive */
+@media (max-width: 991.98px) {
+  .col-lg-6 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .d-none.d-lg-block {
+    display: none !important;
+  }
+}
+
+
 
 /* Footer */
 /* footer {
