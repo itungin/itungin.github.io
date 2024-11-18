@@ -108,21 +108,21 @@
           <h2 class="pb-4 text-center fw-bold text-primary">Hubungi Kami</h2>
           
           <!-- Form Input -->
-          <form>
+          <form id="contactForm">
             <div class="mb-4">
-              <input type="text" class="form-control form-control-lg" id="name" placeholder="Nama" required>
+              <input type="text" class="form-control" id="name" placeholder="Nama" required pattern="[A-Za-z\s]{3,}">
+              </div>
+            
+            <div class="mb-4">
+              <input type="email" class="form-control" id="email" placeholder="Email" required>
             </div>
             
             <div class="mb-4">
-              <input type="email" class="form-control form-control-lg" id="email" placeholder="Email@example.com" required>
+              <input type="tel" class="form-control" id="phone" placeholder="No. Telepon" required pattern="\d{10,}">
             </div>
             
             <div class="mb-4">
-              <input type="tel" class="form-control form-control-lg" id="phone" placeholder="No. Telepon" required>
-            </div>
-            
-            <div class="mb-4">
-              <textarea class="form-control form-control-lg" id="message" rows="4" placeholder="Pesan Anda..." required></textarea>
+              <textarea class="form-control" id="message" rows="4" placeholder="Pesan Anda" required minlength="10"></textarea>
             </div>
             
             <!-- Button Send di pojok kanan -->
