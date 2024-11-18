@@ -20,11 +20,15 @@
     <a href="#testimoni">Testimoni</a>
     <a href="#hubungi">Hubungi Kami</a>
     <a href="Dashboard_blank.html">Coba Dashboard</a>
-  </nav>
+  </nav>  
   <div>
     <a href="login.html" class="btn btn-outline-light">Login</a>
+    <button id="darkModeToggle" class="btn btn-outline-light ms-2">
+      <i id="darkModeIcon" class="fas fa-moon"></i>
+    </button>
     <span class="menu-btn" onclick="toggleSidebar()"><i class="fas fa-bars"></i></span>
   </div>
+  
 </header>
 
 <!-- Sidebar for Mobile -->
@@ -218,6 +222,33 @@
     window.addEventListener('load', () => {
       document.getElementById('loading').style.display = 'none';
     });
+
+    // dark mode
+    const toggle = document.getElementById('darkModeToggle');
+    const icon = document.getElementById('darkModeIcon');
+    const body = document.body;
+
+    // Cek jika pengguna pernah menyimpan preferensi dark mode
+    if (localStorage.getItem('dark-mode') === 'enabled') {
+      body.classList.add('dark-mode');
+      icon.classList.remove('fa-moon');
+      icon.classList.add('fa-sun');
+    }
+
+    toggle.addEventListener('click', () => {
+      if (body.classList.contains('dark-mode')) {
+        body.classList.remove('dark-mode');
+        icon.classList.remove('fa-sun');
+        icon.classList.add('fa-moon');
+        localStorage.setItem('dark-mode', 'disabled');
+      } else {
+        body.classList.add('dark-mode');
+        icon.classList.remove('fa-moon');
+        icon.classList.add('fa-sun');
+        localStorage.setItem('dark-mode', 'enabled');
+      }
+    });
+
   </script>
 </body>
 </html>
