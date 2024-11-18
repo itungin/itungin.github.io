@@ -434,7 +434,7 @@ form button {
 
 form button:hover {
   background-color: #0056b3;
-  transform: translateY(-3px);
+  transform: scale(1.03)
 }
 
 /* Responsive Image */
