@@ -12,15 +12,22 @@
     <!-- Navigation Bar -->
     <header>
 
-        <nav>
-            <ul class="nav-menu">
-                <li><a href="Dashboard_blank.html" >Dashboard</a></li>
-                <li><a href="Business_blank.html" >Business</a></li>
-                <li style="background-color: #97ced1;"><a href="Accounting_blank.html" style="color: rgb(255, 255, 255);">Accounting</a></li>
-                <li><a href="Product_blank.html">Product</a></li>
-                <li><a href="Contacts_blank.html">Contact Us</a></li>
-            </ul>
-        </nav>
+         <!-- Tombol menu untuk perangkat mobile -->
+    <button class="menu-toggle" aria-expanded="false" onclick="toggleMenu()">
+        ☰ Menu
+      </button>
+      <!-- Navigasi (disembunyikan pada perangkat mobile) -->
+      <nav>
+        <ul class="nav-menu">
+          <li><a href="Dashboard_blank.html">Dashboard</a> </li>
+          <li><a href="Business_blank.html">Business</a></li>
+          <li style="background-color: #97ced1"><a href="Accounting_blank.html" style="color: rgb(255, 255, 255)">Accounting</a></li>
+          <li ><a href="Product_blank.html" >Product</a></li>
+          <li >
+            <a href="Contacts_blank.html" >Contact Us</a>
+          </li>
+        </ul>
+      </nav>
 
             
 
@@ -94,5 +101,15 @@
 </div>
 
 <script src="static/js/accounting.js"></script>
+<script>
+   function toggleMenu() {
+        const navMenu = document.querySelector(".nav-menu");
+        navMenu.classList.toggle("show");
+      }
+      function toggleDropdown() {
+        const dropdownContent = document.getElementById("dropdown-content");
+        dropdownContent.classList.toggle("show");
+      }
+  </script>
 </body>
 </html>

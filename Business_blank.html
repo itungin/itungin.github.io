@@ -13,16 +13,22 @@
     <!-- Navigation Bar -->
     <header>
 
-        <nav>
-            <ul class="nav-menu">
-                <li><a href="Dashboard_blank.html">Dashboard</a></li>
-                <li style="background-color: #97ced1;"><a href="Business_blank.html"
-                        style="color: rgb(255, 255, 255);">Business</a></li>
-                <li><a href="Accounting_blank.html">Accounting</a></li>
-                <li><a href="Product_blank.html">Product</a></li>
-                <li><a href="Contacts_blank.html">Contact Us</a></li>
-            </ul>
-        </nav>
+             <!-- Tombol menu untuk perangkat mobile -->
+    <button class="menu-toggle" aria-expanded="false" onclick="toggleMenu()">
+        ☰ Menu
+      </button>
+      <!-- Navigasi (disembunyikan pada perangkat mobile) -->
+      <nav>
+        <ul class="nav-menu">
+          <li><a href="Dashboard_blank.html">Dashboard</a> </li>
+          <li style="background-color: #97ced1"><a href="Business_blank.html" style="color: rgb(255, 255, 255)">Business</a></li>
+          <li><a href="Accounting_blank.html" >Accounting</a></li>
+          <li ><a href="Product_blank.html" >Product</a></li>
+          <li >
+            <a href="Contacts_blank.html" >Contact Us</a>
+          </li>
+        </ul>
+      </nav>
 
 
 
@@ -163,6 +169,13 @@
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="/Dummy/static/js/business.js"></script>
+    <script>
+        function toggleMenu() {
+          const navMenu = document.querySelector(".nav-menu");
+          navMenu.classList.toggle("show");
+        }
+      
+      </script>
 </body>
 
 </html>
