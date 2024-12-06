@@ -45,7 +45,7 @@
     </div>
 
     <script src="static/js/login.js"></script>
-    <script>
+    <!-- <script>
         // Ganti "YOUR_CLIENT_ID" dengan Client ID dari Google OAuth Anda.
         const CLIENT_ID = "861139910885-5flb4pjosqce4ecldalgqkuj66kf2eru.apps.googleusercontent.com";
 
@@ -57,7 +57,25 @@
             // Redirect ke halaman utama atau dashboard
             window.location.href = "https://itung.in.my.id/dashboard/"; // Sesuaikan halaman redirect
         }
+    </script> -->
+    <script>
+        // Ganti "YOUR_CLIENT_ID" dengan Client ID dari Google OAuth Anda.
+        const CLIENT_ID = "861139910885-5flb4pjosqce4ecldalgqkuj66kf2eru.apps.googleusercontent.com";
+    
+        // Callback function setelah pengguna berhasil login
+        function handleCredentialResponse(response) {
+            console.log("Encoded JWT ID token: " + response.credential);
+    
+            // Set JWT ID token ke dalam cookies dengan nama 'login'
+            document.cookie = `login=${response.credential}; path=/; Secure; SameSite=Strict;`;
+    
+            alert("Login berhasil! ID Token diterima.");
+            
+            // Redirect ke halaman utama atau dashboard
+            window.location.href = "https://itung.in.my.id/dashboard/"; // Sesuaikan halaman redirect
+        }
     </script>
+    
 
 </body>
 
