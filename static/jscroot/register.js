@@ -1,52 +1,46 @@
-// Import the JSCroot library (assuming you are using it as an ES module)
-import * as JSCroot from 'https://cdn.jsdelivr.net/gh/jscroot/lib@0.0.1/api.js';
+document.getElementById('registerForm').addEventListener('submit', async function (e) {
+    e.preventDefault();
 
-// Event listener for form submit
-document.getElementById('loginForm').addEventListener('submit', async function (e) {
-    e.preventDefault(); // Prevent form from submitting the default way
-
-    // Get form values
     const name = document.getElementById('name').value;
     const email = document.getElementById('email').value;
+    const phone = document.getElementById('phone').value;
     const password = document.getElementById('password').value;
-    const umkmName = document.getElementById('umkm_name').value;
 
-    // Create an object to send to the backend
-    const data = {
+    const payload = {
         name: name,
         email: email,
-        password: password,
-        umkm_name: umkmName
+        No_hp: phone,
+        password: password
     };
 
     try {
-        // Replace fetch with JSCroot's post request function
-        const response = await JSCroot.post('http://localhost:8081/register', {
+        const response = await fetch("https://asia-southeast2-awangga.cloudfunctions.net/itungin/register", {
+            method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(data)
+            body: JSON.stringify(payload)
         });
 
-        // Check server response
-        if (response.ok) {
-            const result = await response.json();
-            alert('Registration successful!');
-            console.log(result);
-            // Redirect or do something after success
+        const result = await response.json();
+        const messageDiv = document.getElementById('message');
+
+        if (result.status === 'success') {
+            messageDiv.style.color = 'green';
+            messageDiv.textContent = "Registration successful! ID: " + result.data.id;
         } else {
-            const error = await response.json();
-            alert('Registration failed: ' + error.message);
-            console.error(error);
+            messageDiv.style.color = 'red';
+            messageDiv.textContent = "Registration failed: " + result.message;
         }
-    } catch (err) {
-        alert('Error occurred: ' + err.message);
-        console.error(err);
+    } catch (error) {
+        console.error('Error:', error);
+        document.getElementById('message').textContent = 'An error occurred. Please try again.';
     }
 });
+
 
 // Event listener for "Back to main menu" button
 document.getElementById('back-btn').addEventListener('click', function (e) {
     e.preventDefault(); // Prevent default button behavior
-    window.location.href = 'LP.html'; // Redirect to LP.html
+    window.location.href = 'https://itung.in.my.id/'; // Redirect to LP.html
 });

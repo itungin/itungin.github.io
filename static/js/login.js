@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(result => {
             console.log(result);
             alert('Login successful!');
-            window.location.href = 'index.html';
+            window.location.href = 'https://itung.in.my.id/dashboard/';
         })
         .catch(error => {
             console.error('Error:', error);
