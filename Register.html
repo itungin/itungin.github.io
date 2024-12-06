@@ -73,30 +73,43 @@
     async function registerUser() {
         const name = document.getElementById('name').value;
         const email = document.getElementById('email').value;
-        const no_hp = document.getElementById('phonenumber').value;
+        const phonenumber = document.getElementById('phonenumber').value;
         const password = document.getElementById('password').value;
-
-        const response = await fetch('https://asia-southeast2-awangga.cloudfunctions.net/itungin/register', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ name, email, No_hp: no_hp, password }),
-        });
-
-        const result = await response.json();
-
+    
         const messageDiv = document.getElementById('message');
-        if (result.status === 'success') {
-            messageDiv.style.color = 'green';
-            messageDiv.textContent = result.message;    
-        } else {
-            messageDiv.style.color = 'red';
-            messageDiv.textContent = 'Registration failed. Please try again.';
+        messageDiv.style.display = 'block'; // Tampilkan popup
+    
+        try {
+            const response = await fetch('https://asia-southeast2-awangga.cloudfunctions.net/itungin/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ name, email, phonenumber, password }),
+            });
+    
+            const result = await response.json();
+    
+            if (response.ok) {
+                messageDiv.className = 'message success';
+                messageDiv.textContent = result.message || 'Registration successful!';
+            } else {
+                messageDiv.className = 'message error';
+                messageDiv.textContent = result.message || 'Registration failed. Please try again.';
+            }
+        } catch (error) {
+            messageDiv.className = 'message error';
+            messageDiv.textContent = 'An error occurred. Please try again.';
+            console.error('Error:', error);
         }
+    
+        // Sembunyikan popup setelah beberapa detik
+        setTimeout(() => {
+            messageDiv.style.display = 'none';
+        }, 5000);
     }
+    
 </script>
-<!-- <script src="static/js/register.js"></script> -->
 
 </body>
 </html>
