@@ -45,5 +45,5 @@ document.addEventListener('DOMContentLoaded', function () {
 
 document.getElementById('back-btn').addEventListener('click', function (e) {
     e.preventDefault(); // Mencegah default button behavior
-    window.location.href = 'index.html'; // Redirect ke halaman LP.html
+    window.location.href = 'https://itung.in.my.id/dashboard/'; // Redirect ke halaman LP.html
 });
