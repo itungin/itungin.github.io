@@ -1,51 +1,43 @@
-document.getElementById('loginForm').addEventListener('submit', async function (e) {
+document.getElementById('registerForm').addEventListener('submit', async function (e) {
     e.preventDefault();
 
-    // Ambil nilai dari form
-    const name = document.getElementById('name').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const password = document.getElementById('password').value.trim();
-    const noHp = document.getElementById('No_hp').value.trim();
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const phone = document.getElementById('phone').value;
+    const password = document.getElementById('password').value;
 
-    // Validasi input
-    if (!name || !email || !password || !noHp) {
-        alert('Semua field wajib diisi!');
-        return;
-    }
-
-    // Buat payload untuk backend
-    const data = {
+    const payload = {
         name: name,
         email: email,
-        No_hp: noHp, // Sesuai dengan raw body Postman
+        No_hp: phone,
         password: password
     };
 
-    console.log('Payload yang dikirim:', JSON.stringify(data)); // Debugging
-
     try {
-        const response = await fetch('https://asia-southeast2-awangga.cloudfunctions.net/itungin/register', {
+        const response = await fetch("https://asia-southeast2-awangga.cloudfunctions.net/itungin/register", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(data)
+            body: JSON.stringify(payload)
         });
 
-        if (response.ok) {
-            const result = await response.json();
-            alert('Registration successful!');
-            console.log(result);
+        const result = await response.json();
+        const messageDiv = document.getElementById('message');
+
+        if (result.status === 'success') {
+            messageDiv.style.color = 'green';
+            messageDiv.textContent = "Registration successful! ID: " + result.data.id;
         } else {
-            const error = await response.json();
-            alert('Registration failed: ' + (error.response || 'Unknown error'));
-            console.error('Error dari server:', error);
+            messageDiv.style.color = 'red';
+            messageDiv.textContent = "Registration failed: " + result.message;
         }
-    } catch (err) {
-        alert('Error occurred: ' + err.message);
-        console.error('Error:', err);
+    } catch (error) {
+        console.error('Error:', error);
+        document.getElementById('message').textContent = 'An error occurred. Please try again.';
     }
 });
+
 
 // Event listener for "Back to main menu" button
 document.getElementById('back-btn').addEventListener('click', function (e) {
