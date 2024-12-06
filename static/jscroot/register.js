@@ -5,7 +5,7 @@ document.getElementById('loginForm').addEventListener('submit', async function (
     const name = document.getElementById('name').value.trim();
     const email = document.getElementById('email').value.trim();
     const password = document.getElementById('password').value.trim();
-    const noHp = document.getElementById('No_hp').value.trim(); // Sesuaikan nama variabel
+    const noHp = document.getElementById('No_hp').value.trim(); // Sesuaikan dengan nama field di Postman
 
     // Validasi input sebelum mengirim data
     if (!name || !email || !password || !noHp) {
@@ -17,8 +17,8 @@ document.getElementById('loginForm').addEventListener('submit', async function (
     const data = {
         name: name,
         email: email,
-        password: password,
-        No_hp: noHp // Sesuaikan key dengan field di server
+        No_hp: noHp, // Sesuaikan key sesuai dengan raw body Postman
+        password: password
     };
 
     try {
@@ -45,6 +45,7 @@ document.getElementById('loginForm').addEventListener('submit', async function (
         console.error(err);
     }
 });
+
 
 
 // Event listener for "Back to main menu" button
