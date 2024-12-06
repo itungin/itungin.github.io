@@ -6,207 +6,265 @@
     <title>Dashboard Akuntansi</title>
     <link rel="stylesheet" href="static/css/LP.css">
     <style>
-        /* Reset dan Font Smoothing */
-        *, *:before, *:after {
-            box-sizing: border-box;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+      /* Reset dan Font Smoothing */
+      *,
+      *:before,
+      *:after {
+        box-sizing: border-box;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-        /* Body dan Gaya Umum */
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #d4e6e7;
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            color: #022324;
-        }
+      /* Body dan Gaya Umum */
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: #d4e6e7;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        color: #022324;
+      }
 
-        /* Header */
-        header {
-            background-color: #34a0a4;
-            padding: 10px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            color: white;
-        }
+      /* Header */
+      header {
+        background-color: #34a0a4;
+        padding: 10px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: white;
+      }
 
-        /* Menu Navigasi */
-        .nav-menu {
-            list-style: none;
-            display: flex;
-            padding: 0;
-        }
-        .nav-menu li {
-            margin: 0 10px;
-            cursor: pointer;
-            background-color: #e5f4f6;
-            padding: 10px;
-            border-radius: 5px;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-        }
-        .nav-menu li a {
-            color: #033537;
-            text-decoration: none;
-        }
-        .nav-menu li:hover {
-            background-color: #d7f2f4;
-        }
+      /* Menu Navigasi */
+      .nav-menu {
+        list-style: none;
+        display: flex;
+        padding: 0;
+      }
+      .nav-menu li {
+        margin: 0 10px;
+        cursor: pointer;
+        background-color: #e5f4f6;
+        padding: 10px;
+        border-radius: 5px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+      .nav-menu li a {
+        color: #033537;
+        text-decoration: none;
+      }
+      .nav-menu li:hover {
+        background-color: #d7f2f4;
+      }
 
-        /* Profil Pengguna */
-        .user-profile {
-            display: flex;
-            align-items: center;
-            position: relative;
-        }
-        .user-image {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-left: 10px;
-            cursor: pointer;
-        }
+      /* Profil Pengguna */
+      .user-profile {
+        display: flex;
+        align-items: center;
+        position: relative;
+      }
+      .user-image {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-left: 10px;
+        cursor: pointer;
+      }
 
-        /* Dropdown Menu */
-        .dropdown {
-            position: relative;
-            display: inline-block;
-        }
-        .dropbtn {
-            color: white;
-            background-color: transparent;
-            border: none;
-            cursor: pointer;
-            padding-left: 5px;
-            font-size: 16px;
-        }
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            right: 0;
-            background-color: white;
-            min-width: 160px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-            z-index: 1;
-            border-radius: 5px;
-            overflow: hidden;
-        }
-        .dropdown-content a {
-            color: #033537;
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-        }
-        .dropdown-content a:hover {
-            background-color: #f1f1f1;
-        }
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
+      /* Dropdown Menu */
+      .dropdown {
+        position: relative;
+        display: inline-block;
+      }
+      .dropbtn {
+        color: white;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        padding-left: 5px;
+        font-size: 16px;
+      }
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        right: 0;
+        background-color: white;
+        min-width: 160px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        z-index: 1;
+        border-radius: 5px;
+        overflow: hidden;
+      }
+      .dropdown-content a {
+        color: #033537;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+      }
+      .dropdown-content a:hover {
+        background-color: #f1f1f1;
+        transform: scale(1.05);
+      }
+      .dropdown:hover .dropdown-content {
+        display: block;
+      }
 
-        /* Dashboard dan Kartu */
+      /* Dashboard dan Kartu */
+      .dashboard {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        padding: 20px;
+      }
+      .card {
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        min-width: 300px;
+        transition: transform 0.3s, box-shadow 0.3s;
+      }
+      .card:hover {
+        transform: scale(1.01);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transform: scale(1.01);
+      }
+
+      /* Quick Actions */
+      .quick-actions {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .action-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        background-color: #dbe2ef;
+        color: rgb(0, 0, 0);
+        border: none;
+        border-radius: 5px;
+        padding: 10px 15px;
+        font-size: 16px;
+        cursor: pointer;
+        margin: 5px 0;
+        width: 90%;
+        transition: background-color 0.3s ease;
+      }
+      .action-button:hover {
+        background-color: #d7f2f4;
+        transform: scale(1.05);
+      }
+
+      /* Kartu Invoice */
+      .invoice-card {
+        border: 1px solid #9a9a9a;
+        padding: 10px;
+        margin-bottom: 5px;
+      }
+      .delete-btn {
+        color: rgb(0, 0, 0);
+        border: none;
+        padding: 5px 10px;
+        border-radius: 5px;
+        cursor: pointer;
+        float: right;
+        margin-top: -10px;
+      }
+      .delete-btn:hover {
+        color: rgb(253, 0, 0);
+      }
+
+      /* Tabel Data */
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      table th,
+      table td {
+        padding: 12px 15px;
+        text-align: left;
+        font-size: 0.95rem;
+        color: #146366;
+      }
+      table th {
+        background-color: #34a0a4;
+        color: white;
+        font-weight: bold;
+      }
+      table tr:nth-child(even) {
+        background-color: #f9f9f9;
+      }
+      table tr:hover {
+        background-color: #b6e4e7;
+      }
+
+      /* Responsivitas */
+      .menu-toggle {
+        display: none;
+        font-size: 20px;
+        background-color: transparent;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+
+      /* Responsif untuk perangkat mobile */
+      @media (max-width: 768px) {
         .dashboard {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            padding: 20px;
+          grid-template-columns: 1fr;
         }
-        .card {
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            min-width: 300px;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        .card:hover {
-            transform: scale(1.01);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        /* Sembunyikan navigasi dan tampilkan tombol menu */
+        .nav-menu {
+          display: none; /* Sembunyikan menu pada perangkat mobile */
+          flex-direction: column;
+          width: 100%;
+          background-color: #34a0a4;
+          position: absolute;
+          top: 60px;
+          left: 0;
+          z-index: 1;
+          padding: 0;
         }
 
-        /* Quick Actions */
-        .quick-actions {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .action-button {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            background-color: #dbe2ef;
-            color: rgb(0, 0, 0);
-            border: none;
-            border-radius: 5px;
-            padding: 10px 15px;
-            font-size: 16px;
-            cursor: pointer;
-            margin: 5px 0;
-            width: 90%;
-            transition: background-color 0.3s ease;
-        }
-        .action-button:hover {
-            background-color: #d7f2f4;
+        .nav-menu li {
+          margin: 0;
+          padding: 15px;
+          border-bottom: 1px solid #e5f4f6;
         }
 
-        /* Kartu Invoice */
-        .invoice-card {
-            border: 1px solid #9a9a9a;
-            padding: 10px;
-            margin-bottom: 5px;
-        }
-        .delete-btn {
-            color: rgb(0, 0, 0);
-            border: none;
-            padding: 5px 10px;
-            border-radius: 5px;
-            cursor: pointer;
-            float: right;
-            margin-top: -10px;
-        }
-        .delete-btn:hover {
-            color: rgb(253, 0, 0);
+        .menu-toggle {
+          display: block; /* Tampilkan tombol menu pada perangkat mobile */
         }
 
-        /* Tabel Data */
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        table th, table td {
-            padding: 12px 15px;
-            text-align: left;
-            font-size: 0.95rem;
-            color: #146366;
-        }
-        table th {
-            background-color: #34a0a4;
-            color: white;
-            font-weight: bold;
-        }
-        table tr:nth-child(even) {
-            background-color: #F9F9F9;
-        }
-        table tr:hover {
-            background-color: #b6e4e7;
+        /* Tampilkan menu dropdown saat kelas 'show' ditambahkan */
+        .nav-menu.show {
+          display: flex;
         }
 
-        /* Responsivitas */
-        @media (max-width: 768px) {
-            .dashboard {
-                grid-template-columns: 1fr;
-            }
+        /* Untuk menutup dropdown dengan klik di luar */
+        .nav-menu-background {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100vw;
+          height: 100vh;
+          background: rgba(0, 0, 0, 0.4);
+          display: none;
         }
+
+        .nav-menu-background.show {
+          display: block;
+        }
+      }
     </style>
 </head>
 <body>
@@ -214,18 +272,22 @@
     <!-- Navigation Bar -->
     <header>
 
-        <nav>
-            <ul class="nav-menu">
-                <li style="background-color: #97ced1;"><a href="Dashboard_blank.html" style="color: rgb(255, 255, 255);">Dashboard</a></li>
-                <li><a href="Business_blank.html">Business</a></li>
-                <li><a href="Accounting_blank.html">Accounting</a></li>
-                <li><a href="Product_blank.html">Product</a></li>
-                <li><a href="Contacts_blank.html">Contact Us</a></li>
-            </ul>
-        </nav>
-
-            
-
+        <!-- Tombol menu untuk perangkat mobile -->
+      <button class="menu-toggle" aria-expanded="false" onclick="toggleMenu()">
+        ☰ Menu
+      </button>
+      <!-- Navigasi (disembunyikan pada perangkat mobile) -->
+      <nav>
+        <ul class="nav-menu">
+          <li style="background-color: #97ced1">
+            <a href="index.html" style="color: rgb(255, 255, 255)">Dashboard</a>
+          </li>
+          <li><a href="Business_blank.html">Business</a></li>
+          <li><a href="Accounting_blank.html">Accounting</a></li>
+          <li><a href="Product_blank.html">Product</a></li>
+          <li><a href="Contacts_blank.html">Contact Us</a></li>
+        </ul>
+      </nav>
             <div class="user-profile">
                 <img src="static/img/Guest.png" alt="User Profile" class="user-image" id="user-avatar">
                 <div class="dropdown" id="profile-dropdown">
@@ -360,6 +422,14 @@
       </main>
       <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
       <script>
+        function toggleMenu() {
+        const navMenu = document.querySelector(".nav-menu");
+        navMenu.classList.toggle("show");
+      }
+      function toggleDropdown() {
+        const dropdownContent = document.getElementById("dropdown-content");
+        dropdownContent.classList.toggle("show");
+      }
         const ctx = document.getElementById("bankBalanceChart").getContext("2d");
         const bankBalanceChart = new Chart(ctx, {
           type: "line", // Menggunakan grafik line
