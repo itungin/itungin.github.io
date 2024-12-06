@@ -1,42 +1,43 @@
-// Import the JSCroot library (assuming you are using it as an ES module)
-import * as JSCroot from 'https://cdn.jsdelivr.net/gh/jscroot/lib@0.0.1/api.js';
-
-// Event listener for form submit
 document.getElementById('loginForm').addEventListener('submit', async function (e) {
-    e.preventDefault(); // Prevent form from submitting the default way
+    e.preventDefault(); // Mencegah submit form secara default
 
-    // Get form values
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
-    const umkmName = document.getElementById('umkm_name').value;
+    // Mengambil nilai dari form
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value.trim();
+    const noHp = document.getElementById('No_hp').value.trim(); // Sesuaikan nama variabel
 
-    // Create an object to send to the backend
+    // Validasi input sebelum mengirim data
+    if (!name || !email || !password || !noHp) {
+        alert('Semua field wajib diisi!');
+        return;
+    }
+
+    // Membuat object untuk dikirim ke backend
     const data = {
         name: name,
         email: email,
         password: password,
-        umkm_name: umkmName
+        No_hp: noHp // Sesuaikan key dengan field di server
     };
 
     try {
-        // Replace fetch with JSCroot's post request function
-        const response = await JSCroot.post('http://localhost:8081/register', {
+        const response = await fetch('https://asia-southeast2-awangga.cloudfunctions.net/itungin/register', {
+            method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(data)
         });
 
-        // Check server response
         if (response.ok) {
             const result = await response.json();
             alert('Registration successful!');
             console.log(result);
-            // Redirect or do something after success
+            // Redirect atau tindakan lain setelah sukses
         } else {
             const error = await response.json();
-            alert('Registration failed: ' + error.message);
+            alert('Registration failed: ' + (error.response || 'Unknown error'));
             console.error(error);
         }
     } catch (err) {
@@ -45,8 +46,9 @@ document.getElementById('loginForm').addEventListener('submit', async function (
     }
 });
 
+
 // Event listener for "Back to main menu" button
 document.getElementById('back-btn').addEventListener('click', function (e) {
     e.preventDefault(); // Prevent default button behavior
-    window.location.href = 'LP.html'; // Redirect to LP.html
+    window.location.href = 'https://itung.in.my.id/'; // Redirect to LP.html
 });
