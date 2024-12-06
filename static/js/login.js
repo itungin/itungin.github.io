@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function () {
             password: password,
         };
 
-        fetch('http://localhost:8081/login', {
+        fetch('https://asia-southeast2-awangga.cloudfunctions.net/itungin/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -47,3 +47,5 @@ document.getElementById('back-btn').addEventListener('click', function (e) {
     e.preventDefault(); // Mencegah default button behavior
     window.location.href = 'index.html'; // Redirect ke halaman LP.html
 });
+
+
