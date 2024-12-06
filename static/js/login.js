@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function () {
             console.log(result);
             setCookie("login", result.token);
             alert('Login successful!');
-            window.location.href = '/';
+            window.location.href = 'https://itung.in.my.id/dashboard/';
         })
         .catch(error => {
             console.error('Error:', error);
