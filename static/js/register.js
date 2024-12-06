@@ -6,7 +6,7 @@ document.getElementById('loginForm').addEventListener('submit', async function (
     const name = document.getElementById('name').value;
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
-    const umkmName = document.getElementById('umkm_name').value;
+    const umkmName = document.getElementById('No_hp').value;
 
     // Membuat object untuk dikirim ke backend
     const data = {
@@ -17,7 +17,7 @@ document.getElementById('loginForm').addEventListener('submit', async function (
     };
 
     try {
-        const response = await fetch('http://localhost:8081/register', {
+        const response = await fetch('https://asia-southeast2-awangga.cloudfunctions.net/itungin/register', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
