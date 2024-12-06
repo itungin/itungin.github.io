@@ -1,25 +1,27 @@
 document.getElementById('loginForm').addEventListener('submit', async function (e) {
-    e.preventDefault(); // Mencegah submit form secara default
+    e.preventDefault();
 
-    // Mengambil nilai dari form
+    // Ambil nilai dari form
     const name = document.getElementById('name').value.trim();
     const email = document.getElementById('email').value.trim();
     const password = document.getElementById('password').value.trim();
-    const noHp = document.getElementById('No_hp').value.trim(); // Sesuaikan dengan nama field di Postman
+    const noHp = document.getElementById('No_hp').value.trim();
 
-    // Validasi input sebelum mengirim data
+    // Validasi input
     if (!name || !email || !password || !noHp) {
         alert('Semua field wajib diisi!');
         return;
     }
 
-    // Membuat object untuk dikirim ke backend
+    // Buat payload untuk backend
     const data = {
         name: name,
         email: email,
-        No_hp: noHp, // Sesuaikan key sesuai dengan raw body Postman
+        No_hp: noHp, // Sesuai dengan raw body Postman
         password: password
     };
+
+    console.log('Payload yang dikirim:', JSON.stringify(data)); // Debugging
 
     try {
         const response = await fetch('https://asia-southeast2-awangga.cloudfunctions.net/itungin/register', {
@@ -34,19 +36,16 @@ document.getElementById('loginForm').addEventListener('submit', async function (
             const result = await response.json();
             alert('Registration successful!');
             console.log(result);
-            // Redirect atau tindakan lain setelah sukses
         } else {
             const error = await response.json();
             alert('Registration failed: ' + (error.response || 'Unknown error'));
-            console.error(error);
+            console.error('Error dari server:', error);
         }
     } catch (err) {
         alert('Error occurred: ' + err.message);
-        console.error(err);
+        console.error('Error:', err);
     }
 });
-
-
 
 // Event listener for "Back to main menu" button
 document.getElementById('back-btn').addEventListener('click', function (e) {
