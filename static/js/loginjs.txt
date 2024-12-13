@@ -35,11 +35,6 @@ document.addEventListener('DOMContentLoaded', function () {
             console.log(result);
             setCookie("login", result.token);
             alert('Login successful!');
-
-            // Fetch user data after successful login
-            fetchUserData(result.token);
-
-            // Redirect to dashboard
             window.location.href = 'https://itung.in.my.id/dashboard/';
         })
         .catch(error => {
@@ -60,31 +55,4 @@ function setCookie(name, value) {
     date.setTime(date.getTime() + (hours * 60 * 60 * 1000));
     const expires = "; expires=" + date.toUTCString();
     document.cookie = name + "=" + encodeURIComponent(value) + expires + "; path=/";
-}
-
-function fetchUserData(token) {
-    // Ambil data pengguna setelah login
-    fetch('https://asia-southeast2-awangga.cloudfunctions.net/itungin/data/user', {
-        method: 'GET',
-        headers: {
-            'Authorization': `Bearer ${token}`,
-        },
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Failed to fetch user data');
-        }
-        return response.json();
-    })
-    .then(data => {
-        console.log('User Data:', data);
-
-        // Simpan data pengguna ke localStorage
-        localStorage.setItem('userName', data.name);
-        localStorage.setItem('userEmail', data.email);
-        localStorage.setItem('userPhoneNumber', data.phonenumber);
-    })
-    .catch(error => {
-        console.error('Error fetching user data:', error);
-    });
 }
