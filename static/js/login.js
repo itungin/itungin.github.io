@@ -33,6 +33,7 @@ document.addEventListener('DOMContentLoaded', function () {
         })
         .then(result => {
             console.log(result);
+            setCookie("login", result.token);
             alert('Login successful!');
             window.location.href = 'https://itung.in.my.id/dashboard/';
         })
@@ -47,3 +48,13 @@ document.getElementById('back-btn').addEventListener('click', function (e) {
     e.preventDefault(); // Mencegah default button behavior
     window.location.href = 'index.html'; // Redirect ke halaman LP.html
 });
+
+function setCookie(name, value) {
+    const hours = 8; // Masa berlaku cookie dalam jam
+    const date = new Date();
+    date.setTime(date.getTime() + (hours * 60 * 60 * 1000));
+    const expires = "; expires=" + date.toUTCString();
+    document.cookie = name + "=" + encodeURIComponent(value) + expires + "; path=/";
+}
+
+
